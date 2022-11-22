@@ -1,3 +1,4 @@
 __all__ = [
-    'index'
+    'index',
+    'auth'
 ]
