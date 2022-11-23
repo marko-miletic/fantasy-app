@@ -1,5 +1,5 @@
 
-from create_app import build_app
+from src.create_app import build_app
 from src.core.config import app_server_settings
 
 
