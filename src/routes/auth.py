@@ -3,6 +3,7 @@ from flask import (
     render_template,
     redirect,
     url_for,
+    flash,
     request
 )
 
@@ -18,15 +19,19 @@ from werkzeug.security import (
 )
 
 from src.models.user import User
+
 from src.services.auth_operations import (
     post_create_new_user,
     get_user_by_email
 )
 
+import logging
+
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
 auth = Blueprint('auth', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
+
 
 @auth.route('/login', methods=['GET'])
 def login():
@@ -35,17 +40,24 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+    try:
+        email = request.form.get('email')
+        password = request.form.get('password')
+        remember = True if request.form.get('remember') else False
 
-    user = get_user_by_email(email)
+        user = get_user_by_email(email)
+        logging.info(user)
 
-    if not user or not check_password_hash(user.password, password):
+        if not user or not check_password_hash(user.password, password):
+            flash('Please check your login details and try again.')
+            raise ValueError('Wrong credentials input')
+
+        login_user(user, remember=remember)
+        return redirect(url_for('index.profile'))
+
+    except ValueError as err:
+        logging.error(err)
         return redirect(url_for('auth.login'))
-
-    login_user(user, remember=remember)
-    return redirect(url_for('index.profile'))
 
 
 @auth.route('/signup', methods=['GET'])
@@ -55,24 +67,32 @@ def signup():
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
-    email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
+    try:
+        email = request.form.get('email')
+        name = request.form.get('name')
+        password = request.form.get('password')
 
-    user = get_user_by_email(email)
-    print(user)
-    if user:
+        user = get_user_by_email(email)
+        logging.info(user)
+
+        if user:
+            flash('Email address already exists')
+            raise ValueError('email already exists')
+
+        new_user_object = User(
+            name=name,
+            email=email,
+            password=generate_password_hash(password, method='sha256')
+        )
+        # add the new user to the database
+        post_create_new_user(new_user_object)
+
+        return redirect(url_for('auth.login'))
+
+    except ValueError as err:
+        logging.error(err)
         return redirect(url_for('auth.signup'))
 
-    new_user_object = User(
-        name=name,
-        email=email,
-        password=generate_password_hash(password, method='sha256')
-    )
-    # add the new user to the database
-    post_create_new_user(new_user_object)
-
-    return redirect(url_for('auth.login'))
 
 @auth.route('/logout')
 @login_required

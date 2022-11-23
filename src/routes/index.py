@@ -8,7 +8,6 @@ from flask_login import (
     current_user
 )
 
-
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
