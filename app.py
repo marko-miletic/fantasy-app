@@ -1,7 +1,6 @@
-
-from create_app import build_app
+from src.create_app import build_app
 from src.core.config import app_server_settings
-from src.database.init_db import init_db
+
 
 if __name__ == "__main__":
     build_app().run(

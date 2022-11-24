@@ -11,6 +11,8 @@ python-dotenv = "*"
 pydantic = "*"
 alembic = "*"
 psycopg2 = "*"
+flask-login = "*"
+pytest = "*"
 
 [dev-packages]
 
