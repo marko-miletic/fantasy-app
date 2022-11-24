@@ -12,3 +12,11 @@ class User(UserMixin, BaseClass):
     name = Column(String(50), nullable=False, unique=True)
     email = Column(String(50), nullable=False, unique=True)
     password = Column(String, nullable=False, unique=False)
+
+    def __init__(self, name: str, email: str, password: str):
+        self.name = name
+        self.email = email
+        self.password = password
+
+    def __repr__(self):
+        return f'[({self.name}), ({self.email})]'

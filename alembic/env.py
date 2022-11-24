@@ -39,7 +39,6 @@ def run_migrations_offline() -> None:
     Calls to context.execute() here emit the given string to the
     script output.
     """
-    print(settings.SQLALCHEMY_DATABASE_URI)
 
     context.configure(
         url=settings.SQLALCHEMY_DATABASE_URI,
@@ -58,7 +57,6 @@ def run_migrations_online() -> None:
     In this scenario we need to create an Engine
     and associate a connection with the context.
     """
-    print(settings.SQLALCHEMY_DATABASE_URI)
     configuration = config.get_section(config.config_ini_section)
     configuration["sqlalchemy.url"] = settings.SQLALCHEMY_DATABASE_URI
 
