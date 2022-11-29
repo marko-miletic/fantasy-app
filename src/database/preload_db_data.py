@@ -17,7 +17,8 @@ def add_default_admin_user() -> None:
     default_admin_user = User(
         name=admin_default_account.USER,
         email=admin_default_account.MAIL,
-        password=generate_password_hash(admin_default_account.PASSWORD, method='sha256')
+        password=generate_password_hash(admin_default_account.PASSWORD, method='sha256'),
+        role=2
     )
 
     session.add(default_admin_user)

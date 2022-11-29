@@ -53,7 +53,7 @@ class AdminDefaultAccount(BaseModel):
 
 
 class AuthenticationSettings(BaseModel):
-    AUTH_SECRET_KEY: str = getenv('AUTH_SECRET_KEY')
+    AUTH_SECRET_KEY: str = getenv('FLASK_AUTH_SECRET_KEY')
 
 
 settings = Settings()
