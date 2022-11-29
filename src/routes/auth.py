@@ -18,16 +18,14 @@ from werkzeug.security import (
     check_password_hash
 )
 
+from src.path_structure import TEMPLATES_DIRECTORY_PATH
 from src.models.user import User
-
 from src.services.auth_operations import (
     post_create_new_user,
     get_user_by_email
 )
 
 import logging
-
-from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
 auth = Blueprint('auth', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)

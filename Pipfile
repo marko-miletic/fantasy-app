@@ -13,6 +13,7 @@ alembic = "*"
 psycopg2 = "*"
 flask-login = "*"
 pytest = "*"
+werkzeug = "*"
 
 [dev-packages]
 

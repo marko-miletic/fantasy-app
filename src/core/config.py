@@ -46,5 +46,12 @@ class AppServerSettings(BaseModel):
     PORT: int = 5000
 
 
+class AdminDefaultAccount(BaseModel):
+    USER: str = 'admin'
+    MAIL: str = getenv('DEFAULT_ADMIN_USER_MAIL')
+    PASSWORD: str = getenv('DEFAULT_ADMIN_USER_PASSWORD')
+
+
 settings = Settings()
 app_server_settings = AppServerSettings()
+admin_default_account = AdminDefaultAccount()
