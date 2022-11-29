@@ -2,18 +2,15 @@ from flask import Flask
 
 from src.routes import *
 from src.core.authentication import login_manager
+from src.core.config import auth_app_settings
 from src.services.auth_operations import get_user_by_id
 from src.database.preload_db_data import fill_db_data
-
-from os import getenv
-from dotenv import load_dotenv
 
 
 def build_app():
     app = Flask(__name__)
 
-    load_dotenv()
-    app.config['SECRET_KEY'] = getenv('FLASK_AUTH_SECRET_KEY')
+    app.config['SECRET_KEY'] = auth_app_settings.AUTH_SECRET_KEY
 
     app.register_blueprint(index.index, url_prefix='/')
     app.register_blueprint(auth.auth, url_prefix='/auth')
