@@ -1,5 +1,4 @@
 from src.database.session import SessionLocal
-
 from src.models.user import User
 
 

@@ -46,5 +46,17 @@ class AppServerSettings(BaseModel):
     PORT: int = 5000
 
 
+class AdminDefaultAccount(BaseModel):
+    USER: str = 'admin'
+    MAIL: str = getenv('DEFAULT_ADMIN_USER_MAIL')
+    PASSWORD: str = getenv('DEFAULT_ADMIN_USER_PASSWORD')
+
+
+class AuthenticationSettings(BaseModel):
+    AUTH_SECRET_KEY: str = getenv('FLASK_AUTH_SECRET_KEY')
+
+
 settings = Settings()
 app_server_settings = AppServerSettings()
+admin_default_account = AdminDefaultAccount()
+auth_app_settings = AuthenticationSettings()
