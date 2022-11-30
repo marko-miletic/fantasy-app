@@ -1,34 +1,28 @@
-from src.database.session import SessionLocal
-from src.core.config import admin_default_account
-from src.path_structure import ASSETS_DIRECTORY_PATH
-from src.models.user import User
-
-from werkzeug.security import generate_password_hash
-
-
-session = SessionLocal()
-
-
-def add_default_admin_user() -> None:
-    test_sample_query = session.query(User).filter(User.name == admin_default_account.USER).scalar()
-    if test_sample_query:
-        return None
-
-    default_admin_user = User(
-        name=admin_default_account.USER,
-        email=admin_default_account.MAIL,
-        password=generate_password_hash(admin_default_account.PASSWORD, method='sha256'),
-        role=2
-    )
-
-    session.add(default_admin_user)
-    session.commit()
-
-    return None
+from src.database.preload_db_util import *
 
 
 def fill_db_data() -> None:
     
     add_default_admin_user()
 
-    return None
+    test_sample_query = session.query(Group).filter(Group.id == 0).scalar()
+    if test_sample_query:
+        return None
+
+    countries_dataframe = pd.read_csv(os.path.join(DATA_DIRECTORY_PATH, 'wc2018-countries.csv'))
+    countries_dataframe['country_id'] = countries_dataframe.index
+    players_dataframe = pd.read_csv(os.path.join(DATA_DIRECTORY_PATH, 'wc2018-players.csv'))
+    players_dataframe['player_id'] = players_dataframe.index
+
+    players_dataframe_team_changes = {
+        'IR Iran': 'Iran',
+        'Korea Republic': 'South Korea'
+    }
+
+    players_dataframe['Team'] = players_dataframe['Team'].replace(
+        players_dataframe_team_changes.keys(), players_dataframe_team_changes.values()
+    )
+
+    add_group_table_data(get_group_id_dict(countries_dataframe))
+    add_country_table_data(countries_dataframe)
+    add_player_table_data(players_dataframe, countries_dataframe)
