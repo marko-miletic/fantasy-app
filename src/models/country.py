@@ -19,7 +19,7 @@ class Country(BaseClass):
 
     group_id = Column(Integer, ForeignKey('group.id'))
 
-    def __init__(self, id: int, country: str, world_ranking: str, tournament_ranking: str, group_id: str):
+    def __init__(self, id: int, country: str, world_ranking: int, tournament_ranking: int, group_id: int):
         self.id = id
         self.country = country
         self.world_ranking = world_ranking

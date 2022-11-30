@@ -3,6 +3,9 @@ from src.models.user import User
 from src.database.session import SessionLocal
 
 
+session = SessionLocal()
+
+
 TEST_USER = User(name='test', email='test', password='test')
 TEST_USER.id = -2
 
@@ -18,8 +21,6 @@ def test_blank_get_user_by_email():
 
 
 def test_get_user_by_id():
-    session = SessionLocal()
-
     session.add(TEST_USER)
     session.commit()
 
@@ -32,8 +33,6 @@ def test_get_user_by_id():
 
 
 def test_get_user_by_email():
-    session = SessionLocal()
-
     session.add(TEST_USER)
     session.commit()
 
@@ -46,8 +45,6 @@ def test_get_user_by_email():
 
 
 def test_post_create_new_user():
-    session = SessionLocal()
-
     auth_operations.post_create_new_user(TEST_USER)
 
     user = session.query(User).filter(User.id == TEST_USER.id).first()

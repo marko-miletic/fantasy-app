@@ -21,7 +21,7 @@ class Player(BaseClass):
 
     country_id = Column(Integer, ForeignKey('country.id'))
 
-    def __init__(self, id: int, name: str, number: int, position: str, birth_date: Date, country_id: int):
+    def __init__(self, id: int, name: str, number: int, position: str, birth_date: str, country_id: int):
         self.id = id
         self.name = name
         self.number = number
