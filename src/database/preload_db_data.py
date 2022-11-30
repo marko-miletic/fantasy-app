@@ -1,3 +1,5 @@
+import os
+
 from src.database.session import SessionLocal
 from src.core.config import admin_default_account
 from src.path_structure import ASSETS_DIRECTORY_PATH
@@ -7,6 +9,9 @@ from werkzeug.security import generate_password_hash
 
 
 session = SessionLocal()
+
+
+DATA_DIRECTORY_PATH = os.path.join(ASSETS_DIRECTORY_PATH, 'data')
 
 
 def add_default_admin_user() -> None:
