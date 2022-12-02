@@ -16,7 +16,6 @@ import pandas as pd
 
 session = SessionLocal()
 
-
 DATA_DIRECTORY_PATH = os.path.join(ASSETS_DIRECTORY_PATH, 'data')
 
 

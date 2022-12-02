@@ -1,4 +1,22 @@
-from src.database.preload_db_util import *
+import os
+import pandas as pd
+
+from src.database.session import SessionLocal
+
+from src.database.preload_db_util import add_group_table_data
+from src.database.preload_db_util import add_player_table_data
+from src.database.preload_db_util import add_country_table_data
+from src.database.preload_db_util import add_default_admin_user
+from src.database.preload_db_util import get_group_id_dict
+
+from src.models.group import Group
+
+from src.path_structure import ASSETS_DIRECTORY_PATH
+
+
+session = SessionLocal()
+
+DATA_DIRECTORY_PATH = os.path.join(ASSETS_DIRECTORY_PATH, 'data')
 
 
 def fill_db_data() -> None:
