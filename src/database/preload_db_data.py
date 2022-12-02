@@ -3,11 +3,13 @@ import pandas as pd
 
 from src.database.session import SessionLocal
 
-from src.database.preload_db_util import add_group_table_data
-from src.database.preload_db_util import add_player_table_data
-from src.database.preload_db_util import add_country_table_data
-from src.database.preload_db_util import add_default_admin_user
-from src.database.preload_db_util import get_group_id_dict
+from src.database.preload_db_util import (
+    add_group_table_data,
+    add_player_table_data,
+    add_country_table_data,
+    add_default_admin_user,
+    get_group_id_dict
+)
 
 from src.models.group import Group
 
