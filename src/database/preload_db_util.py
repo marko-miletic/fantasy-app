@@ -9,6 +9,8 @@ from src.models.group import Group
 from src.models.country import Country
 from src.models.player import Player
 
+from src.utility.date_operations import date_format_changer
+
 from werkzeug.security import generate_password_hash
 
 import pandas as pd
@@ -17,11 +19,6 @@ import pandas as pd
 session = SessionLocal()
 
 DATA_DIRECTORY_PATH = os.path.join(ASSETS_DIRECTORY_PATH, 'data')
-
-
-def date_format_changer(date: str, separator: str, format_separator: str) -> str:
-    date_list = date.split(separator)
-    return format_separator.join(reversed(date_list))
 
 
 def add_default_admin_user() -> None:
