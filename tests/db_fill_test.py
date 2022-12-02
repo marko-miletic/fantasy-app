@@ -11,7 +11,9 @@ session = SessionLocal()
 
 
 TEST_GROUP = Group(id=-1, name='T')
+
 TEST_COUNTRY = Country(id=-1, country='test', world_ranking=-1, tournament_ranking=-1, group_id=0)
+
 TEST_PLAYER = Player(id=-1, name='test', number=-1, position='test', birth_date='1980-1-1', country_id=0)
 
 

@@ -21,7 +21,7 @@ class Match(BaseClass):
     home_team_id = Column(Integer, ForeignKey('country.id'))
     away_team_id = Column(Integer, ForeignKey('country.id'))
 
-    def __init__(self, date: Date, home_team_id: int, away_team_id: int):
+    def __init__(self, date: str, home_team_id: int, away_team_id: int):
         self.date = date
         self.home_team_id = home_team_id
         self.away_team_id = away_team_id

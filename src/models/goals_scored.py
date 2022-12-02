@@ -15,7 +15,7 @@ class GoalsScored(BaseClass):
     match_id = Column(Integer, ForeignKey('match.id'))
     player_id = Column(Integer, ForeignKey('player.id'))
 
-    def __init__(self, number_of_goals, match_id: int, player_id: int):
+    def __init__(self, number_of_goals: int, match_id: int, player_id: int):
         self.number_of_goals = number_of_goals
         self.match_id = match_id
         self.player_id = player_id
