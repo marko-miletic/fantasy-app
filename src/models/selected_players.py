@@ -1,5 +1,6 @@
 from sqlalchemy import (
     Integer,
+    Boolean,
     Column,
     ForeignKey
 )
@@ -10,6 +11,8 @@ from src.models.base import BaseClass
 class SelectedPlayers(BaseClass):
     id = Column(Integer, primary_key=True, index=True)
 
+    active = Column(Boolean, nullable=False, unique=False, default=True)
+
     user_id = Column(Integer, ForeignKey('user.id'))
     player_id = Column(Integer, ForeignKey('player.id'))
 
@@ -18,4 +21,4 @@ class SelectedPlayers(BaseClass):
         self.player_id = player_id
 
     def __repr__(self):
-        return f'[({self.user_id}), ({self.player_id})]'
+        return f'[({self.user_id}), ({self.player_id}), ({self.active})]'

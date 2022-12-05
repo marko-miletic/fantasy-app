@@ -29,7 +29,7 @@ def main():
     lineup = get_lineup(user_id=current_user.id)
 
     test_values = {
-        'GF': 2,
+        'GK': 2,
         'DF': 5,
         'MF': 3,
         'FW': 4
@@ -37,4 +37,5 @@ def main():
 
     print(position_counter_check(lineup, test_values))
     print(country_counter_check(lineup, 5))
+    print(active_lineup_values_check(lineup))
     return make_response(lineup)
