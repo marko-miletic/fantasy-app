@@ -25,8 +25,8 @@ player = Blueprint('player', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
 
 @player.route('/lineup')
 @login_required
-def main():
-    lineup = get_lineup(user_id=current_user.id)
+def lineup_all():
+    lineup = get_lineup(user_id=current_user.id, active=False)
 
     test_values = {
         'GK': 2,
@@ -38,4 +38,12 @@ def main():
     print(position_counter_check(lineup, test_values))
     print(country_counter_check(lineup, 5))
     print(active_lineup_values_check(lineup))
+    return make_response(lineup)
+
+
+@player.route('/lineup-active')
+@login_required
+def lineup_active():
+    lineup = get_lineup(user_id=current_user.id, active=True)
+
     return make_response(lineup)
