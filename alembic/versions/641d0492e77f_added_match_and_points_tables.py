@@ -1,4 +1,4 @@
-"""added match and points tables
+"""
 
 Revision ID: 641d0492e77f
 Revises: 0e83cdc0d7c6

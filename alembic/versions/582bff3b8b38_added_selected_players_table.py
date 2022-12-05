@@ -1,4 +1,4 @@
-"""added selected players table
+"""
 
 Revision ID: 582bff3b8b38
 Revises: 48443153bee8

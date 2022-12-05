@@ -1,4 +1,4 @@
-"""added user roles
+"""
 
 Revision ID: 2d898c09b9df
 Revises: b502fc9da6c9

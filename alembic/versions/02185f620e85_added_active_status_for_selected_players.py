@@ -1,4 +1,4 @@
-"""added active status for selected players
+"""
 
 Revision ID: 02185f620e85
 Revises: 582bff3b8b38

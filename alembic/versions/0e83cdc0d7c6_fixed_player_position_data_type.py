@@ -1,4 +1,4 @@
-"""fixed player position data type
+"""
 
 Revision ID: 0e83cdc0d7c6
 Revises: 4b9c61bb4481
