@@ -1,4 +1,5 @@
 __all__ = [
     'index',
-    'auth'
+    'auth',
+    'player'
 ]

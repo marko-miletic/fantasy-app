@@ -1,0 +1,38 @@
+from collections import Counter
+
+
+def position_counter_check(players_lineup: list, max_positions_values: dict) -> bool:
+    print(max_positions_values)
+    position_counter = Counter()
+
+    for player in players_lineup:
+        position_counter.update({player.get('position', None): 1})
+    print(position_counter)
+
+    for position, number_of_players in position_counter.items():
+        if number_of_players > max_positions_values.get(position, None):
+            return False
+    return True
+
+
+def country_counter_check(players_lineup: list, max_country_value: int) -> bool:
+    print(max_country_value)
+    country_counter = Counter()
+
+    for player in players_lineup:
+        country_counter.update({player.get('country_id', None): 1})
+    print(country_counter)
+
+    return max(country_counter.values()) <= max_country_value
+
+
+def active_lineup_values_check(players_lineup: list) -> bool:
+    active_lineup_counter_values = {
+        'GK': 1,
+        'DF': 4,
+        'MF': 5,
+        'FW': 3
+    }
+    active_lineup_players = [player for player in players_lineup if player.get('active', False)]
+    return len(players_lineup) == 11 and position_counter_check(players_lineup=active_lineup_players,
+                                                                max_positions_values=active_lineup_counter_values)
