@@ -10,6 +10,10 @@ ACTIVE_LINEUP_POSITION_COUNTER = {
     }
 
 
+def max_lineup_size(players_lineup: list) -> bool:
+    return len(players_lineup) <= MAX_NUMBER_OF_PLAYERS_IN_LINEUP
+
+
 def position_counter_check(players_lineup: list, max_positions_values: dict) -> bool:
     print(max_positions_values)
     position_counter = Counter()
