@@ -9,6 +9,7 @@ from src.models.player import Player
 from src.models.match import Match
 from src.models.points import Points
 from src.models.goals_scored import GoalsScored
+from src.models.selected_players import SelectedPlayers
 
 # dialect+driver://username:password@host:port/database
 
