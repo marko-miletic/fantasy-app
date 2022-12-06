@@ -1,9 +1,21 @@
-from src.database.preload_db_util import *
+import os
+import pandas as pd
+
+from src import database
+
+from src.models.group import Group
+
+from src.path_structure import ASSETS_DIRECTORY_PATH
+
+
+session = database.SessionLocal()
+
+DATA_DIRECTORY_PATH = os.path.join(ASSETS_DIRECTORY_PATH, 'data')
 
 
 def fill_db_data() -> None:
     
-    add_default_admin_user()
+    database.add_default_admin_user()
 
     test_sample_query = session.query(Group).filter(Group.id == 0).scalar()
     if test_sample_query:
@@ -23,6 +35,6 @@ def fill_db_data() -> None:
         players_dataframe_team_changes.keys(), players_dataframe_team_changes.values()
     )
 
-    add_group_table_data(get_group_id_dict(countries_dataframe))
-    add_country_table_data(countries_dataframe)
-    add_player_table_data(players_dataframe, countries_dataframe)
+    database.add_group_table_data(database.get_group_id_dict(countries_dataframe))
+    database.add_country_table_data(countries_dataframe)
+    database.add_player_table_data(players_dataframe, countries_dataframe)

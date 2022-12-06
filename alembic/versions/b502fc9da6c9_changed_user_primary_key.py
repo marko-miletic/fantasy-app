@@ -1,4 +1,4 @@
-"""changed user primary key
+"""
 
 Revision ID: b502fc9da6c9
 Revises: 

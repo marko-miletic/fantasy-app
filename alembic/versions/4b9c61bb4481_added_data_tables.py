@@ -1,4 +1,4 @@
-"""added data tables
+"""
 
 Revision ID: 4b9c61bb4481
 Revises: 2d898c09b9df
