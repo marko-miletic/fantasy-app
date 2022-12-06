@@ -11,7 +11,7 @@ from src.models.base import BaseClass
 class SelectedPlayers(BaseClass):
     id = Column(Integer, primary_key=True, index=True)
 
-    active = Column(Boolean, nullable=False, unique=False, default=True)
+    active = Column(Boolean, nullable=False, unique=False, default=False)
 
     user_id = Column(Integer, ForeignKey('user.id'))
     player_id = Column(Integer, ForeignKey('player.id'))
