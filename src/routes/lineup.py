@@ -1,6 +1,5 @@
 from flask import (
     Blueprint,
-    render_template,
     make_response
 )
 
@@ -20,13 +19,13 @@ from src.utility.lineup_checks import (
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
-player = Blueprint('player', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
+lineup = Blueprint('lineup', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
 
 
-@player.route('/lineup')
+@lineup.route('/full')
 @login_required
 def lineup_all():
-    lineup = get_lineup(user_id=current_user.id, active=False)
+    lineup_data = get_lineup(user_id=current_user.id, active=False)
 
     test_values = {
         'GK': 2,
@@ -35,15 +34,15 @@ def lineup_all():
         'FW': 4
     }
 
-    print(position_counter_check(lineup, test_values))
-    print(country_counter_check(lineup, 5))
-    print(active_lineup_values_check(lineup))
-    return make_response(lineup)
+    print(position_counter_check(lineup_data, test_values))
+    print(country_counter_check(lineup_data, 5))
+    print(active_lineup_values_check(lineup_data))
+    return make_response(lineup_data)
 
 
-@player.route('/lineup-active')
+@lineup.route('/active')
 @login_required
 def lineup_active():
-    lineup = get_lineup(user_id=current_user.id, active=True)
+    lineup_data = get_lineup(user_id=current_user.id, active=True)
 
-    return make_response(lineup)
+    return make_response(lineup_data)
