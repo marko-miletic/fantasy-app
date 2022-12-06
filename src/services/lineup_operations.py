@@ -2,7 +2,6 @@ from src.database.session import SessionLocal
 
 from src.models.player import Player
 from src.models.selected_players import SelectedPlayers
-
 from sqlalchemy import and_
 
 
@@ -37,7 +36,7 @@ def get_lineup(user_id: int, active: bool = False):
 
 
 def add_player_to_lineup(user_id: int, player_id: int):
+
     new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
     session.add(new_lineup_player)
     session.commit()
-

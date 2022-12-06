@@ -57,5 +57,4 @@ def active_lineup_values_check(players_lineup: list) -> bool:
 def all_new_player_checks(players_lineup: list, max_position_values: dict) -> bool:
     return max_lineup_size(players_lineup)\
            and position_counter_check(players_lineup, max_position_values)\
-           and country_counter_check(players_lineup, 5)\
-           and active_lineup_values_check(players_lineup)
+           and country_counter_check(players_lineup, 5)

@@ -8,7 +8,6 @@ session = SessionLocal()
 
 
 def get_all_players():
-
     players_template = [
         'id',
         'name',
@@ -26,3 +25,21 @@ def get_all_players():
     ).join(Country).all()
     players_data = [dict(zip(players_template, tuple(row))) for row in players]
     return players_data
+
+
+def get_player_by_id(player_id: int) -> dict:
+    player_template = [
+        'name',
+        'number',
+        'position',
+        'country_id'
+    ]
+
+    player = session.query(
+        Player.name,
+        Player.number,
+        Player.position,
+        Player.country_id
+    ).filter(Player.id == player_id).first()
+
+    return dict(zip(player_template, player))
