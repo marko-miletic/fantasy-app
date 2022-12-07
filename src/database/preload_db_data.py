@@ -38,3 +38,4 @@ def fill_db_data() -> None:
     database.add_group_table_data(database.get_group_id_dict(countries_dataframe))
     database.add_country_table_data(countries_dataframe)
     database.add_player_table_data(players_dataframe, countries_dataframe)
+    database.add_default_lineup_limits_table_data()

@@ -2,6 +2,7 @@ from src.database.session import SessionLocal
 
 from src.models.player import Player
 from src.models.selected_players import SelectedPlayers
+from src.models.lineup_limits import LineupLimits
 from sqlalchemy import and_
 
 
@@ -40,3 +41,21 @@ def add_player_to_lineup(user_id: int, player_id: int):
     new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
     session.add(new_lineup_player)
     session.commit()
+
+
+def get_lineup_limits(status: str) -> dict:
+    lineup_limits_template = [
+        'GK',
+        'DF',
+        'MF',
+        'FW'
+    ]
+
+    lineup_limits = session.query(
+        LineupLimits.gk,
+        LineupLimits.df,
+        LineupLimits.mf,
+        LineupLimits.fw
+    ).filter(LineupLimits.lineup_status == status).first()
+
+    return dict(zip(lineup_limits_template, lineup_limits))

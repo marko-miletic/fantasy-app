@@ -14,7 +14,7 @@ from flask_login import (
 
 from src import services
 
-from src.services.lineup_operations import add_player_to_lineup
+from src.services.lineup_operations import add_player_to_lineup, get_lineup_limits
 from src.services.player_operations import get_player_by_id
 from src.utility.lineup_checks import all_new_player_checks
 
@@ -30,14 +30,8 @@ lineup = Blueprint('lineup', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
 def lineup_all():
     lineup_data = services.lineup_operations.get_lineup(user_id=current_user.id, active=False)
 
-    test_values = {
-        'GK': 2,
-        'DF': 5,
-        'MF': 3,
-        'FW': 4
-    }
-
-    all_new_player_checks(lineup_data, test_values)
+    full_lineup_limits = get_lineup_limits('full')
+    all_new_player_checks(lineup_data, full_lineup_limits)
     return make_response(lineup_data)
 
 
@@ -74,14 +68,9 @@ def add_player(player_id: int):
                                                                    active=False)
     current_lineup_players.append(player)
 
-    test_values = {
-        'GK': 2,
-        'DF': 5,
-        'MF': 3,
-        'FW': 4
-    }
-
-    if not all_new_player_checks(current_lineup_players, test_values):
+    full_lineup_limits = get_lineup_limits('full')
+    if not all_new_player_checks(current_lineup_players, full_lineup_limits):
+        print('checks failed')
         return redirect(url_for('lineup.list_players'))
 
     add_player_to_lineup(current_user.id, player_id)

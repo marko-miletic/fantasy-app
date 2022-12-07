@@ -8,6 +8,7 @@ from src.models.user import User
 from src.models.group import Group
 from src.models.country import Country
 from src.models.player import Player
+from src.models.lineup_limits import LineupLimits
 
 from src.utility.date_operations import date_format_changer
 
@@ -88,4 +89,12 @@ def add_player_table_data(players_dataframe: pd.DataFrame, countries_dataframe: 
         )
         session.add(new_player)
 
+    session.commit()
+
+
+def add_default_lineup_limits_table_data() -> None:
+    active_lineup_limits = LineupLimits(gk=1, df=5, mf=5, fw=3, lineup_status='active')
+    full_lineup_limits = LineupLimits(gk=2, df=7, mf=7, fw=5, lineup_status='full')
+
+    session.bulk_save_objects([active_lineup_limits, full_lineup_limits])
     session.commit()
