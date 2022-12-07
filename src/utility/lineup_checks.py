@@ -3,11 +3,18 @@ from collections import Counter
 
 MAX_NUMBER_OF_PLAYERS_IN_LINEUP = 20
 ACTIVE_LINEUP_POSITION_COUNTER = {
-        'GK': 1,
-        'DF': 4,
-        'MF': 5,
-        'FW': 3
-    }
+    'GK': 1,
+    'DF': 4,
+    'MF': 5,
+    'FW': 3
+}
+
+COMPLETE_LINEUP_POSITION_COUNTER = {
+    'GK': 2,
+    'DF': 4,
+    'MF': 5,
+    'FW': 3
+}
 
 
 def max_lineup_size(players_lineup: list) -> bool:
@@ -45,3 +52,9 @@ def active_lineup_values_check(players_lineup: list) -> bool:
     print(active_lineup_players)
     return len(players_lineup) == 11 and position_counter_check(players_lineup=active_lineup_players,
                                                                 max_positions_values=ACTIVE_LINEUP_POSITION_COUNTER)
+
+
+def all_new_player_checks(players_lineup: list, max_position_values: dict) -> bool:
+    return max_lineup_size(players_lineup)\
+           and position_counter_check(players_lineup, max_position_values)\
+           and country_counter_check(players_lineup, 5)

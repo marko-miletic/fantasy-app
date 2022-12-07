@@ -1,6 +1,6 @@
 from flask import Flask
 
-from src.routes import *
+from src import routes
 
 from src.core.authentication import login_manager
 from src.core.config import auth_app_settings
@@ -15,9 +15,9 @@ def build_app():
 
     app.config['SECRET_KEY'] = auth_app_settings.AUTH_SECRET_KEY
 
-    app.register_blueprint(index.index, url_prefix='/')
-    app.register_blueprint(auth.auth, url_prefix='/auth')
-    app.register_blueprint(player.player, url_prefix='/player')
+    app.register_blueprint(routes.index.index, url_prefix='/')
+    app.register_blueprint(routes.auth.auth, url_prefix='/auth')
+    app.register_blueprint(routes.lineup.lineup, url_prefix='/lineup')
     
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
