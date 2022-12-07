@@ -7,8 +7,13 @@ from src.models import Player, SelectedPlayers, LineupLimits
 session = SessionLocal()
 
 
-def get_lineup(user_id: int, active: bool = False):
+def add_player_to_lineup(user_id: int, player_id: int):
+    new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
+    session.add(new_lineup_player)
+    session.commit()
 
+
+def get_lineup(user_id: int, active: bool = False):
     active_query_switch = {
         True: and_(SelectedPlayers.user_id == user_id, SelectedPlayers.active == True),
         False: SelectedPlayers.user_id == user_id
@@ -32,13 +37,6 @@ def get_lineup(user_id: int, active: bool = False):
     lineup_data = [dict(zip(lineup_template, tuple(row))) for row in lineup]
     print(lineup_data)
     return lineup_data
-
-
-def add_player_to_lineup(user_id: int, player_id: int):
-
-    new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
-    session.add(new_lineup_player)
-    session.commit()
 
 
 def get_lineup_limits(status: str) -> dict:
