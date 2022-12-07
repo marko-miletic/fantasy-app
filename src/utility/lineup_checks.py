@@ -2,13 +2,13 @@ from collections import Counter
 
 from src.services.lineup_operations import get_lineup_limits
 
-MAX_NUMBER_OF_PLAYERS_IN_FULL_LINEUP = sum(get_lineup_limits(status='full').values())
+
 ACTIVE_LINEUP_SIZE = 11
 MAX_NUMBER_OF_PLAYERS_PER_COUNTRY = 5
 
 
 def max_lineup_size(players_lineup: list) -> bool:
-    return len(players_lineup) <= MAX_NUMBER_OF_PLAYERS_IN_FULL_LINEUP
+    return len(players_lineup) <= sum(get_lineup_limits(status='full').values())
 
 
 def position_counter_check(players_lineup: list, max_positions_values: dict) -> bool:
@@ -20,7 +20,7 @@ def position_counter_check(players_lineup: list, max_positions_values: dict) -> 
     print(position_counter)
 
     for position, number_of_players in position_counter.items():
-        if number_of_players > max_positions_values.get(position, MAX_NUMBER_OF_PLAYERS_IN_FULL_LINEUP):
+        if number_of_players > max_positions_values.get(position, sum(get_lineup_limits(status='full').values())):
             return False
     return True
 

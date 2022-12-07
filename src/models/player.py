@@ -1,13 +1,6 @@
-from sqlalchemy import (
-    String,
-    Integer,
-    Date,
-    Column,
-    ForeignKey
-)
+from sqlalchemy import String, Integer, Date, Column, ForeignKey
 
-
-from src.models.base import BaseClass
+from src.models import BaseClass
 
 
 class Player(BaseClass):

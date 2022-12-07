@@ -1,10 +1,6 @@
-from sqlalchemy import (
-    String,
-    Integer,
-    Column,
-)
+from sqlalchemy import String, Integer, Column
 
-from src.models.base import BaseClass
+from src.models import BaseClass
 
 
 class LineupLimits(BaseClass):

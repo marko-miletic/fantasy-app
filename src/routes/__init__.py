@@ -1,3 +1,3 @@
-from . import auth
-from . import index
-from . import lineup
+from .auth import auth
+from .index import index
+from .lineup import lineup

@@ -1,13 +1,7 @@
-from typing import Optional, Any
-from pydantic import (
-    BaseSettings,
-    BaseModel,
-    PostgresDsn,
-    validator
-)
-
 from os import getenv
 from dotenv import load_dotenv
+from typing import Optional, Any
+from pydantic import BaseSettings, BaseModel, PostgresDsn, validator
 
 
 load_dotenv()

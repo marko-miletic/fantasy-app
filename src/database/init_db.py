@@ -1,5 +1,5 @@
 from src.database.session import SessionLocal, engine
-from src.models.base import BaseClass
+from src.models import BaseClass
 
 
 def init_db():

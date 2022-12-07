@@ -1,9 +1,7 @@
-from src.database.session import SessionLocal
-
-from src.models.player import Player
-from src.models.selected_players import SelectedPlayers
-from src.models.lineup_limits import LineupLimits
 from sqlalchemy import and_
+
+from src.database.session import SessionLocal
+from src.models import Player, SelectedPlayers, LineupLimits
 
 
 session = SessionLocal()

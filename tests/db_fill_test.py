@@ -1,10 +1,6 @@
-from src.models.user import User
 from src.database.session import SessionLocal
 from src.core.config import admin_default_account
-
-from src.models.group import Group
-from src.models.country import Country
-from src.models.player import Player
+from src.models import Group, Country, Player, User
 
 
 session = SessionLocal()

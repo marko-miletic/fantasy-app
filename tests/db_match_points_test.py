@@ -1,8 +1,5 @@
 from src.database.session import SessionLocal
-from src.models.match import Match
-from src.models.goals_scored import GoalsScored
-from src.models.points import Points
-from src.models.user import User
+from src.models import Match, GoalsScored, Points, User
 
 
 session = SessionLocal()

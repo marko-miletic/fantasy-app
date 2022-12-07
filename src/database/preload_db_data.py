@@ -2,9 +2,7 @@ import os
 import pandas as pd
 
 from src import database
-
-from src.models.group import Group
-
+from src.models import Group
 from src.path_structure import ASSETS_DIRECTORY_PATH
 
 

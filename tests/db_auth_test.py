@@ -1,6 +1,6 @@
-from src.services import auth_operations
-from src.models.user import User
 from src.database.session import SessionLocal
+from src.services import auth_operations
+from src.models import User
 
 
 session = SessionLocal()

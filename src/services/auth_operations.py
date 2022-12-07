@@ -1,5 +1,5 @@
 from src.database.session import SessionLocal
-from src.models.user import User
+from src.models import User
 
 
 session = SessionLocal()
@@ -18,4 +18,3 @@ def get_user_by_email(email: str) -> User:
 def post_create_new_user(new_user_object: User) -> None:
     session.add(new_user_object)
     session.commit()
-

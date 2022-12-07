@@ -1,7 +1,5 @@
 from src.database.session import SessionLocal
-
-from src.models.player import Player
-from src.models.country import Country
+from src.models import Player, Country
 
 
 session = SessionLocal()
