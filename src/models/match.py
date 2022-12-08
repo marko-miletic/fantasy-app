@@ -1,12 +1,6 @@
-from sqlalchemy import (
-    Integer,
-    Date,
-    Boolean,
-    Column,
-    ForeignKey
-)
+from sqlalchemy import Integer, Date, Boolean, Column, ForeignKey
 
-from src.models.base import BaseClass
+from src.models import BaseClass
 
 
 class Match(BaseClass):

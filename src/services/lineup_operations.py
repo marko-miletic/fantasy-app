@@ -1,15 +1,19 @@
-from src.database.session import SessionLocal
-
-from src.models.player import Player
-from src.models.selected_players import SelectedPlayers
 from sqlalchemy import and_
+
+from src.database.session import SessionLocal
+from src.models import Player, SelectedPlayers, LineupLimits
 
 
 session = SessionLocal()
 
 
-def get_lineup(user_id: int, active: bool = False):
+def add_player_to_lineup(user_id: int, player_id: int):
+    new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
+    session.add(new_lineup_player)
+    session.commit()
 
+
+def get_lineup(user_id: int, active: bool = False):
     active_query_switch = {
         True: and_(SelectedPlayers.user_id == user_id, SelectedPlayers.active == True),
         False: SelectedPlayers.user_id == user_id
@@ -35,8 +39,19 @@ def get_lineup(user_id: int, active: bool = False):
     return lineup_data
 
 
-def add_player_to_lineup(user_id: int, player_id: int):
+def get_lineup_limits(status: str) -> dict:
+    lineup_limits_template = [
+        'GK',
+        'DF',
+        'MF',
+        'FW'
+    ]
 
-    new_lineup_player = SelectedPlayers(user_id=user_id, player_id=player_id)
-    session.add(new_lineup_player)
-    session.commit()
+    lineup_limits = session.query(
+        LineupLimits.gk,
+        LineupLimits.df,
+        LineupLimits.mf,
+        LineupLimits.fw
+    ).filter(LineupLimits.lineup_status == status).first()
+
+    return dict(zip(lineup_limits_template, lineup_limits))

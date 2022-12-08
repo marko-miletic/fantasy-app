@@ -1,7 +1,5 @@
 from src.database.session import SessionLocal
-
-from src.models.player import Player
-from src.models.country import Country
+from src.models import Player, Country
 
 
 session = SessionLocal()
@@ -42,4 +40,5 @@ def get_player_by_id(player_id: int) -> dict:
         Player.country_id
     ).filter(Player.id == player_id).first()
 
-    return dict(zip(player_template, player))
+    if player is not None:
+        return dict(zip(player_template, player))
