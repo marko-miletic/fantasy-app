@@ -1,6 +1,6 @@
 from collections import Counter
 
-from src.services.lineup_operations import get_lineup_limits
+from src.crud.lineup_operations import get_lineup_limits
 
 
 ACTIVE_LINEUP_SIZE = 11

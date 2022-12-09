@@ -1,6 +1,6 @@
 from src.database.session import SessionLocal
 from src.models import User, SelectedPlayers, LineupLimits
-from src.services import auth_operations, lineup_operations
+from src.crud import auth_operations, lineup_operations
 
 
 session = SessionLocal()

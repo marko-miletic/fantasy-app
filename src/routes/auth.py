@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from src.models import User
-from src.services import auth_operations
+from src.crud import auth_operations
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 

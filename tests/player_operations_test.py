@@ -1,6 +1,6 @@
 from src.database.session import SessionLocal
 from src.models import Player
-from src.services import player_operations
+from src.crud import player_operations
 
 
 NUMBER_OF_PLAYERS = 736
