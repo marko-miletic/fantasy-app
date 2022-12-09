@@ -39,13 +39,18 @@ def country_counter_check(players_lineup: list, max_country_value: int) -> bool:
 
 def active_lineup_values_check(players_lineup: list) -> bool:
     active_lineup_players = [player for player in players_lineup if player.get('active', False)]
-    print(active_lineup_players)
-    return len(players_lineup) == ACTIVE_LINEUP_SIZE \
-           and position_counter_check(players_lineup=active_lineup_players,
-                                      max_positions_values=get_lineup_limits(status='active'))
+    return len(active_lineup_players) <= ACTIVE_LINEUP_SIZE and \
+           position_counter_check(players_lineup=active_lineup_players,
+                                  max_positions_values=get_lineup_limits(status='active'))
+
+
+def active_lineup_full_check(players_lineup: list) -> bool:
+    active_lineup_players = [player for player in players_lineup if player.get('active', False)]
+    return len(active_lineup_players) == ACTIVE_LINEUP_SIZE
 
 
 def all_new_player_checks(players_lineup: list, max_position_values: dict) -> bool:
-    return max_lineup_size(players_lineup) \
-           and position_counter_check(players_lineup, max_position_values) \
-           and country_counter_check(players_lineup, MAX_NUMBER_OF_PLAYERS_PER_COUNTRY)
+    return max_lineup_size(players_lineup) and \
+           position_counter_check(players_lineup, max_position_values) and \
+           country_counter_check(players_lineup, MAX_NUMBER_OF_PLAYERS_PER_COUNTRY) and \
+           active_lineup_values_check(players_lineup)

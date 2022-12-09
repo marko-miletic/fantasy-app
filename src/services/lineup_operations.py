@@ -34,8 +34,8 @@ def get_lineup(user_id: int, active: bool = False):
         Player.country_id,
         SelectedPlayers.active
     ).join(SelectedPlayers).filter(active_query_switch.get(active, False)).all()
+
     lineup_data = [dict(zip(lineup_template, tuple(row))) for row in lineup]
-    print(lineup_data)
     return lineup_data
 
 

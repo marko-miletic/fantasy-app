@@ -21,6 +21,7 @@ def get_all_players():
         Player.position,
         Country.country
     ).join(Country).all()
+
     players_data = [dict(zip(players_template, tuple(row))) for row in players]
     return players_data
 
