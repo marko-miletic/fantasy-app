@@ -3,7 +3,6 @@ from src.models import Match, GoalsScored, Points, User
 from src.crud import match_operations
 
 
-
 session = SessionLocal()
 
 
@@ -40,7 +39,7 @@ def test_get_matches_by_status():
         if not match.get('confirmed', True):
             correct_status_count += 1
 
-    assert len(status_matches) == correct_status_count
+    assert len(status_matches) == correct_status_count and len(status_matches) > 0
 
 
 def test_get_matches_by_round():
