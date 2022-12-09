@@ -11,10 +11,7 @@ session = SessionLocal()
 def get_user_by_id(user_id: int) -> tuple:
     try:
         user = session.query(User).filter(User.id == user_id).first()
-        if user is not None:
-            return user
-        else:
-            raise ValueError
+        return user
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
@@ -23,10 +20,7 @@ def get_user_by_id(user_id: int) -> tuple:
 def get_user_by_email(email: str) -> User:
     try:
         user = session.query(User).filter_by(email=email).first()
-        if user is not None:
-            return user
-        else:
-            raise ValueError
+        return user
     except SQLAlchemyError as err:
         logging.error(err)
         raise err

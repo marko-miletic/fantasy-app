@@ -49,8 +49,6 @@ def get_player_by_id(player_id: int) -> dict:
 
         if player is not None:
             return dict(zip(player_template, player))
-        else:
-            raise ValueError
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
