@@ -3,7 +3,7 @@ from flask import Flask
 from src import routes
 from src.core.config import auth_app_settings
 from src.core.authentication import login_manager
-from src.services.auth_operations import get_user_by_id
+from src.crud.auth_operations import get_user_by_id
 from src.database.preload_db_data import fill_db_data
 
 

@@ -2,7 +2,7 @@ from collections import defaultdict
 from flask import Blueprint, make_response, redirect, url_for
 from flask_login import login_required, current_user
 
-from src.services import lineup_operations, player_operations
+from src.crud import lineup_operations, player_operations
 from src.utility.lineup_checks import all_new_player_checks
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 

@@ -1,12 +1,14 @@
 from src.database.session import SessionLocal
 from src.models import Match, GoalsScored, Points, User
+from src.crud import match_operations
+
 
 
 session = SessionLocal()
 
 
 def test_post_create_new_match():
-    test_match = Match(date='1980-1-1', home_team_id=0, away_team_id=1)
+    test_match = Match(date='1980-1-1', match_round=-1, home_team_id=0, away_team_id=1)
     test_match.id = -1
 
     session.add(test_match)
@@ -20,8 +22,44 @@ def test_post_create_new_match():
     assert match is not None
 
 
+def test_get_matches_by_status():
+    test_match = Match(date='1980-1-1', match_round=-1, home_team_id=0, away_team_id=1)
+    test_match.id = -1
+    test_match.status = 'active'
+
+    session.add(test_match)
+    session.commit()
+
+    status_matches = match_operations.get_matches_by_status(test_match.status)
+
+    session.query(Match).filter(Match.round == test_match.round).delete()
+    session.commit()
+
+    correct_status_count = 0
+    for match in status_matches:
+        if not match.get('confirmed', True):
+            correct_status_count += 1
+
+    assert len(status_matches) == correct_status_count
+
+
+def test_get_matches_by_round():
+    test_match = Match(date='1980-1-1', match_round=-1, home_team_id=0, away_team_id=1)
+    test_match.id = -1
+
+    session.add(test_match)
+    session.commit()
+
+    round_matches = match_operations.get_matches_by_round(test_match.round)
+
+    session.query(Match).filter(Match.round == test_match.round).delete()
+    session.commit()
+
+    assert len(round_matches) == 1 and round_matches[0].get('round', None) == test_match.round
+
+
 def test_post_goals_scored():
-    test_match = Match(date='1980-1-1', home_team_id=0, away_team_id=1)
+    test_match = Match(date='1980-1-1', match_round=-1,  home_team_id=0, away_team_id=1)
     test_match.id = -1
 
     test_goals_scored = GoalsScored(number_of_goals=-1, match_id=-1, player_id=0)
@@ -42,11 +80,11 @@ def test_post_goals_scored():
 
 
 def test_post_points():
-    test_match = Match(date='1980-1-1', home_team_id=0, away_team_id=1)
+    test_match = Match(date='1980-1-1', match_round=-1, home_team_id=0, away_team_id=1)
     test_match.id = -1
     test_user = User(name='test', email='test', password='test')
     test_user.id = -2
-    test_points = Points(number_of_points=-1, match_id=-1, user_id=-2)
+    test_points = Points(number_of_points=-1, match_id=-1, player_id=0)
 
     session.add(test_match)
     session.commit()
