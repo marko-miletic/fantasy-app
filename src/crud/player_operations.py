@@ -16,6 +16,7 @@ def get_all_players() -> list:
         'position',
         'country'
     ]
+
     try:
         players = session.query(
             Player.id,
@@ -23,13 +24,15 @@ def get_all_players() -> list:
             Player.number,
             Player.position,
             Country.country
-        ).join(Country).all()
-
-        players_data = [dict(zip(players_template, tuple(row))) for row in players]
-        return players_data
+        )\
+            .join(Country)\
+            .all()
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
+
+    players_data = [dict(zip(players_template, tuple(row))) for row in players]
+    return players_data
 
 
 def get_player_by_id(player_id: int) -> dict:
@@ -39,16 +42,22 @@ def get_player_by_id(player_id: int) -> dict:
         'position',
         'country_id'
     ]
+
     try:
         player = session.query(
             Player.name,
             Player.number,
             Player.position,
             Player.country_id
-        ).filter(Player.id == player_id).first()
-
-        if player is not None:
-            return dict(zip(player_template, player))
+        )\
+            .filter(Player.id == player_id)\
+            .first()
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
+
+    if player is None:
+        logging.error('Error Message', stack_info=True)
+        raise ValueError(f'non existing data for given input: player_id: {player_id}')
+
+    return dict(zip(player_template, player))

@@ -26,11 +26,3 @@ def test_get_player_by_id():
     session.commit()
 
     assert player is not None
-
-
-def test_get_player_by_nonexistent_id():
-    non_existing_player_id = -1
-
-    player = player_operations.get_player_by_id(non_existing_player_id)
-
-    assert player is None

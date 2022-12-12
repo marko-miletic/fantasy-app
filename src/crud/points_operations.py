@@ -37,6 +37,7 @@ def get_points_per_user_per_round(user_id: int, round_number: int) -> dict:
     if points is None:
         logging.error('Error Message', stack_info=True)
         raise ValueError(f'non existing data for given input: user_id: {user_id}, round: {round_number}')
+
     points_per_round_data = dict(zip(point_per_round_template, (user_id, round_number, int(points))))
     return points_per_round_data
 
@@ -54,8 +55,10 @@ def get_points_per_user(user_id: int) -> dict:
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
+
     if points is None:
         logging.error('Error Message', stack_info=True)
         raise ValueError(f'non existing data for given input: user_id: {user_id}')
+
     points_per_round_data = dict(zip(point_per_round_template, (user_id, int(points))))
     return points_per_round_data
