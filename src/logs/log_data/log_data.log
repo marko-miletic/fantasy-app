@@ -1,0 +1,72 @@
+2022-12-12 15:02:23,113 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-12 15:02:23,113 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-12 15:02:56,184 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-12 15:02:56,184 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-12 15:03:34,415 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-12 15:03:34,415 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-12 15:04:44,734 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:04:44] "GET / HTTP/1.1" 200 -
+2022-12-12 15:04:55,530 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:04:55] "[33mGET /points/round/44 HTTP/1.1[0m" 404 -
+2022-12-12 15:05:43,133 :: ERROR :: Error Message
+Stack (most recent call last):
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 973, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 363, in handle
+    super().handle()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/server.py", line 432, in handle
+    self.handle_one_request()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/server.py", line 420, in handle_one_request
+    method()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 335, in run_wsgi
+    execute(self.server.app)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 322, in execute
+    application_iter = app(environ, start_response)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2548, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "/Users/symphony/Documents/fantasy-application/src/routes/profile.py", line 28, in user_round_points
+    total_points_count = points_operations.get_points_per_user_per_round(user_id=current_user.id,
+  File "/Users/symphony/Documents/fantasy-application/src/crud/points_operations.py", line 38, in get_points_per_user_per_round
+    logger.logging.error('Error Message', stack_info=True)
+2022-12-12 15:05:43,133 :: ERROR :: non existing data for given input: user_id: 2, round: 44
+2022-12-12 15:05:43,134 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:05:43] "[32mGET /profile/points/round/44 HTTP/1.1[0m" 302 -
+2022-12-12 15:05:43,142 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:05:43] "GET /profile/ HTTP/1.1" 200 -
+2022-12-12 15:11:41,211 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-12 15:11:41,211 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-12 15:11:47,391 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:47] "GET /profile/ HTTP/1.1" 200 -
+2022-12-12 15:11:48,825 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:48] "GET /profile/ HTTP/1.1" 200 -
+2022-12-12 15:11:54,684 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:54] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-12 15:11:56,821 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:56] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-12 15:11:56,829 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:56] "GET / HTTP/1.1" 200 -
+2022-12-12 15:11:58,188 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:58] "GET /auth/login HTTP/1.1" 200 -
+2022-12-12 15:12:02,096 :: INFO :: [(bla), (bla@mail.com), (user)]
+2022-12-12 15:12:02,097 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:12:02] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-12 15:12:02,105 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:12:02] "GET /profile_auth_test HTTP/1.1" 200 -

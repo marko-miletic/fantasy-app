@@ -1,8 +1,8 @@
-import logging
 from collections import defaultdict
 from flask import Blueprint, make_response, redirect, url_for, flash
 from flask_login import login_required, current_user
 
+from src.logs import logger
 from src.crud import lineup_operations, player_operations
 from src.utility.lineup_checks import all_new_player_checks
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
@@ -30,8 +30,8 @@ def lineup_active():
 
         return make_response(lineup_data)
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while loading lineup')
+        logger.logging.error(err)
+        flash('An logs occurred while loading lineup')
         return redirect(url_for('index.main'))
 
 
@@ -51,8 +51,8 @@ def list_players():
 
         return make_response(filtered_unselected_players)
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while adding player to lineup')
+        logger.logging.error(err)
+        flash('An logs occurred while adding player to lineup')
         return redirect(url_for('lineup.lineup_active'))
 
 
@@ -74,6 +74,6 @@ def add_player(player_id: int):
         lineup_operations.add_player_to_lineup(current_user.id, player_id)
         return redirect(url_for('lineup.lineup_all'))
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while adding player to lineup')
+        logger.logging.error(err)
+        flash('An logs occurred while adding player to lineup')
         return redirect(url_for('lineup.lineup_active'))

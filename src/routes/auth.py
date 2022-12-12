@@ -1,8 +1,8 @@
-import logging
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
+from src.logs import logger
 from src.models import User
 from src.crud import auth_operations
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
@@ -24,7 +24,7 @@ def login_post():
         remember = True if request.form.get('remember') else False
 
         user = auth_operations.get_user_by_email(email)
-        logging.info(user)
+        logger.logging.info(user)
 
         if not user or not check_password_hash(user.password, password):
             flash('Please check your login details and try again.')
@@ -34,7 +34,7 @@ def login_post():
         return redirect(url_for('index.profile'))
 
     except ValueError as err:
-        logging.error(err)
+        logger.logging.error(err)
         return redirect(url_for('auth.login'))
 
 
@@ -51,7 +51,7 @@ def signup_post():
         password = request.form.get('password')
 
         user = auth_operations.get_user_by_email(email)
-        logging.info(user)
+        logger.logging.info(user)
 
         if user:
             flash('Email address already exists')
@@ -68,7 +68,7 @@ def signup_post():
         return redirect(url_for('auth.login'))
 
     except ValueError as err:
-        logging.error(err)
+        logger.logging.error(err)
         return redirect(url_for('auth.signup'))
 
 

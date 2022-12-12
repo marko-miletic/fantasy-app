@@ -1,7 +1,7 @@
-import logging
 from flask import Blueprint, make_response, redirect, url_for, flash
 from flask_login import login_required, current_user
 
+from src.logs import logger
 from src.crud import points_operations
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
@@ -16,8 +16,8 @@ def profile_index():
         # total_points_count = points_operations.get_points_per_user(user_id=current_user.id)
         return make_response({'user': current_user.id}), 200
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while loading profile')
+        logger.logging.error(err)
+        flash('An logs occurred while loading profile')
         return redirect(url_for('index.main'))
 
 
@@ -29,6 +29,6 @@ def user_round_points(round_number: int):
                                                                              round_number=round_number)
         return make_response({'round': round_number, 'points': total_points_count}), 200
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while loading points per round page')
+        logger.logging.error(err)
+        flash('An logs occurred while loading points per round page')
         return redirect(url_for('profile.profile_index'))
