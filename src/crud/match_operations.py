@@ -1,4 +1,6 @@
+import logging
 from sqlalchemy import or_
+from sqlalchemy.exc import SQLAlchemyError
 
 from src.database.session import SessionLocal
 from src.models import Match, Country
@@ -27,25 +29,29 @@ def get_matches_by_status(status: str = 'all') -> list:
         'confirmed'
     ]
 
-    home_country = aliased(Country)
-    away_country = aliased(Country)
-    matches = session.query(
-        Match.date,
-        Match.round,
-        Match.home_team_id,
-        home_country.country,
-        Match.away_team_id,
-        away_country.country,
-        Match.home_score,
-        Match.away_score,
-        Match.confirmed
-    )\
-        .join(home_country, home_country.id == Match.home_team_id)\
-        .join(away_country, away_country.id == Match.away_team_id)\
-        .filter(match_status_switch.get(status, 'all')).all()
+    try:
+        home_country = aliased(Country)
+        away_country = aliased(Country)
+        matches = session.query(
+            Match.date,
+            Match.round,
+            Match.home_team_id,
+            home_country.country,
+            Match.away_team_id,
+            away_country.country,
+            Match.home_score,
+            Match.away_score,
+            Match.confirmed
+        )\
+            .join(home_country, home_country.id == Match.home_team_id)\
+            .join(away_country, away_country.id == Match.away_team_id)\
+            .filter(match_status_switch.get(status, 'all')).all()
 
-    matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
-    return matches_data
+        matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
+        return matches_data
+    except SQLAlchemyError as err:
+        logging.error(err)
+        raise err
 
 
 def get_matches_by_round(match_round: int) -> list:
@@ -61,32 +67,39 @@ def get_matches_by_round(match_round: int) -> list:
         'confirmed'
     ]
 
-    home_country = aliased(Country)
-    away_country = aliased(Country)
-    matches = session.query(
-        Match.date,
-        Match.round,
-        Match.home_team_id,
-        home_country.country,
-        Match.away_team_id,
-        away_country.country,
-        Match.home_score,
-        Match.away_score,
-        Match.confirmed
-    )\
-        .join(home_country, home_country.id == Match.home_team_id)\
-        .join(away_country, away_country.id == Match.away_team_id)\
-        .filter(Match.round == match_round).all()
+    try:
+        home_country = aliased(Country)
+        away_country = aliased(Country)
+        matches = session.query(
+            Match.date,
+            Match.round,
+            Match.home_team_id,
+            home_country.country,
+            Match.away_team_id,
+            away_country.country,
+            Match.home_score,
+            Match.away_score,
+            Match.confirmed
+        )\
+            .join(home_country, home_country.id == Match.home_team_id)\
+            .join(away_country, away_country.id == Match.away_team_id)\
+            .filter(Match.round == match_round).all()
 
-    matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
-    return matches_data
+        matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
+        return matches_data
+    except SQLAlchemyError as err:
+        logging.error(err)
+        raise err
 
 
 def post_create_new_match(date: str, match_round: int, home_team_id: int, away_team_id):
     new_match = Match(date=date, match_round=match_round, home_team_id=home_team_id, away_team_id=away_team_id)
-
-    session.add(new_match)
-    session.commit()
+    try:
+        session.add(new_match)
+        session.commit()
+    except SQLAlchemyError as err:
+        logging.error(err)
+        raise err
 
 
 def update_change_match_status(match_id: int, new_status: str = 'confirmed'):
@@ -94,6 +107,9 @@ def update_change_match_status(match_id: int, new_status: str = 'confirmed'):
         'confirmed': True,
         'active': False
     }
-
-    session.query(Match).filter(Match.id == match_id).update({Match.confirmed: status_switch.get(new_status, False)})
-    session.commit()
+    try:
+        session.query(Match).filter(Match.id == match_id).update({Match.confirmed: status_switch.get(new_status, False)})
+        session.commit()
+    except SQLAlchemyError as err:
+        logging.error(err)
+        raise err
