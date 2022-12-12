@@ -32,6 +32,7 @@ def get_lineup(user_id: int, active: bool = False) -> list:
         'country_id',
         'active'
     ]
+
     try:
         lineup = session.query(
             Player.name,
@@ -39,13 +40,16 @@ def get_lineup(user_id: int, active: bool = False) -> list:
             Player.position,
             Player.country_id,
             SelectedPlayers.active
-        ).join(SelectedPlayers).filter(active_query_switch.get(active, False)).all()
-
-        lineup_data = [dict(zip(lineup_template, tuple(row))) for row in lineup]
-        return lineup_data
+        )\
+            .join(SelectedPlayers)\
+            .filter(active_query_switch.get(active, False))\
+            .all()
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
+
+    lineup_data = [dict(zip(lineup_template, tuple(row))) for row in lineup]
+    return lineup_data
 
 
 def get_lineup_limits(status: str) -> dict:
@@ -55,15 +59,22 @@ def get_lineup_limits(status: str) -> dict:
         'MF',
         'FW'
     ]
+
     try:
         lineup_limits = session.query(
             LineupLimits.gk,
             LineupLimits.df,
             LineupLimits.mf,
             LineupLimits.fw
-        ).filter(LineupLimits.lineup_status == status).first()
-
-        return dict(zip(lineup_limits_template, lineup_limits))
+        )\
+            .filter(LineupLimits.lineup_status == status)\
+            .first()
     except SQLAlchemyError as err:
         logging.error(err)
         raise err
+
+    if lineup_limits is None:
+        logging.error('Error Message', stack_info=True)
+        raise ValueError(f'non existing data for lineup limits: status: {status}')
+
+    return dict(zip(lineup_limits_template, lineup_limits))

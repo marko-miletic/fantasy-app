@@ -13,7 +13,7 @@ def main():
     return render_template('index.html')
 
 
-@index.route('/profile')
+@index.route('/profile_auth_test')
 @login_required
 def profile():
     try:
