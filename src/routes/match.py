@@ -1,7 +1,7 @@
-import logging
 from flask import Blueprint, make_response, redirect, url_for, flash
 # from flask_login import login_required, current_user
 
+from src.logs import logger
 from src.crud import match_operations
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
@@ -16,8 +16,8 @@ def all_matches():
         matches = match_operations.get_matches_by_status(status='all')
         return make_response(matches)
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while loading matches')
+        logger.logging.error(err)
+        flash('An logs occurred while loading matches')
         return redirect(url_for('index.main'))
 
 
@@ -31,8 +31,8 @@ def create_new_match(match_round: int, home_team_id: int, away_team_id: int):
                                                away_team_id=away_team_id)
         return redirect(url_for('match.all_matches'))
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while creating new match')
+        logger.logging.error(err)
+        flash('An logs occurred while creating new match')
         return redirect(url_for('match.all_matches'))
 
 
@@ -43,8 +43,8 @@ def update_match_status(match_id: int, new_status: str):
         match_operations.update_change_match_status(match_id=match_id, new_status=new_status)
         return redirect(url_for('match.all_matches'))
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while changing match status')
+        logger.logging.error(err)
+        flash('An logs occurred while changing match status')
         return redirect(url_for('match.all_matches'))
 
 
@@ -54,6 +54,6 @@ def matches_by_round(match_round: int):
         matches = match_operations.get_matches_by_round(match_round)
         return make_response(matches)
     except Exception as err:
-        logging.error(err)
-        flash('An error occurred while accessing matches by round')
+        logger.logging.error(err)
+        flash('An logs occurred while accessing matches by round')
         return redirect(url_for('match.all_matches'))

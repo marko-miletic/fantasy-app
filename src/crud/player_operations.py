@@ -1,6 +1,6 @@
-import logging
 from sqlalchemy.exc import SQLAlchemyError
 
+from src.logs import logger
 from src.database.session import SessionLocal
 from src.models import Player, Country
 
@@ -28,7 +28,7 @@ def get_all_players() -> list:
             .join(Country)\
             .all()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     players_data = [dict(zip(players_template, tuple(row))) for row in players]
@@ -53,11 +53,11 @@ def get_player_by_id(player_id: int) -> dict:
             .filter(Player.id == player_id)\
             .first()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     if player is None:
-        logging.error('Error Message', stack_info=True)
+        logger.logging.error('Error Message', stack_info=True)
         raise ValueError(f'non existing data for given input: player_id: {player_id}')
 
     return dict(zip(player_template, player))

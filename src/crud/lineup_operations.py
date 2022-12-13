@@ -1,7 +1,7 @@
-import logging
 from sqlalchemy import and_
 from sqlalchemy.exc import SQLAlchemyError
 
+from src.logs import logger
 from src.database.session import SessionLocal
 from src.models import Player, SelectedPlayers, LineupLimits
 
@@ -15,7 +15,7 @@ def add_player_to_lineup(user_id: int, player_id: int):
         session.add(new_lineup_player)
         session.commit()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
 
@@ -45,7 +45,7 @@ def get_lineup(user_id: int, active: bool = False) -> list:
             .filter(active_query_switch.get(active, False))\
             .all()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     lineup_data = [dict(zip(lineup_template, tuple(row))) for row in lineup]
@@ -70,11 +70,11 @@ def get_lineup_limits(status: str) -> dict:
             .filter(LineupLimits.lineup_status == status)\
             .first()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     if lineup_limits is None:
-        logging.error('Error Message', stack_info=True)
+        logger.logging.error('Error Message', stack_info=True)
         raise ValueError(f'non existing data for lineup limits: status: {status}')
 
     return dict(zip(lineup_limits_template, lineup_limits))

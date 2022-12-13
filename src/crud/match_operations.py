@@ -1,7 +1,7 @@
-import logging
 from sqlalchemy import or_
 from sqlalchemy.exc import SQLAlchemyError
 
+from src.logs import logger
 from src.database.session import SessionLocal
 from src.models import Match, Country
 from sqlalchemy.orm import aliased
@@ -47,7 +47,7 @@ def get_matches_by_status(status: str = 'all') -> list:
             .join(away_country, away_country.id == Match.away_team_id)\
             .filter(match_status_switch.get(status, 'all')).all()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
@@ -85,7 +85,7 @@ def get_matches_by_round(match_round: int) -> list:
             .join(away_country, away_country.id == Match.away_team_id)\
             .filter(Match.round == match_round).all()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
     matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
@@ -99,7 +99,7 @@ def post_create_new_match(date: str, match_round: int, home_team_id: int, away_t
         session.add(new_match)
         session.commit()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
 
 
@@ -113,5 +113,5 @@ def update_change_match_status(match_id: int, new_status: str = 'confirmed'):
         session.query(Match).filter(Match.id == match_id).update({Match.confirmed: status_switch.get(new_status, False)})
         session.commit()
     except SQLAlchemyError as err:
-        logging.error(err)
+        logger.logging.error(err)
         raise err
