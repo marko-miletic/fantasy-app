@@ -230,3 +230,77 @@ DETAIL:  Key (away_team_id)=(3331) is not present in table "country".
 (Background on this error at: https://sqlalche.me/e/14/gkpj)
 2022-12-13 11:51:05,518 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:51:05] "[32mGET /match/create-new/178/3331/4 HTTP/1.1[0m" 302 -
 2022-12-13 11:51:05,533 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:51:05] "GET /match/all HTTP/1.1" 200 -
+2022-12-13 14:04:09,822 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-13 14:04:09,822 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 14:04:45,605 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:04:45] "GET / HTTP/1.1" 200 -
+2022-12-13 14:04:55,648 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:04:55] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-13 14:04:55,661 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:04:55] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:05:16,967 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:16] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-13 14:05:16,972 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:16] "GET / HTTP/1.1" 200 -
+2022-12-13 14:05:19,131 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:19] "[32mGET /profile_auth_test HTTP/1.1[0m" 302 -
+2022-12-13 14:05:19,137 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:19] "GET /auth/login?next=%2Fprofile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:05:24,784 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 14:05:24,784 :: ERROR :: Wrong credentials input
+2022-12-13 14:05:24,785 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:24] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:05:24,791 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:24] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:05:30,934 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 14:05:30,934 :: ERROR :: Wrong credentials input
+2022-12-13 14:05:30,935 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:30] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:05:30,941 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:30] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:05:45,233 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 14:05:45,234 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:45] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:05:45,244 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:45] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:05:56,011 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:05:56] "GET /auth/admin-test HTTP/1.1" 200 -
+2022-12-13 14:06:33,275 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:06:33] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-13 14:06:33,285 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:06:33] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:16:45,680 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-13 14:16:45,680 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 14:16:55,427 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 14:16:55,428 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:16:55] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:16:55,445 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:16:55] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:17:03,281 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:17:03] "[33mGET /moderator-test HTTP/1.1[0m" 404 -
+2022-12-13 14:17:10,752 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:17:10] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-13 14:18:19,430 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-13 14:18:19,430 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 14:18:22,144 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:22] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-13 14:18:30,986 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:30] "GET /auth/admin-test HTTP/1.1" 200 -
+2022-12-13 14:18:39,460 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:39] "GET /lineup/full HTTP/1.1" 200 -
+2022-12-13 14:18:46,233 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:46] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-13 14:18:46,250 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:46] "GET / HTTP/1.1" 200 -
+2022-12-13 14:18:48,079 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:48] "[32mGET /profile_auth_test HTTP/1.1[0m" 302 -
+2022-12-13 14:18:48,089 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:48] "GET /auth/login?next=%2Fprofile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:18:49,313 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:49] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:18:56,150 :: INFO :: [(bla), (bla@mail.com), (user)]
+2022-12-13 14:18:56,151 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:56] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:18:56,160 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:18:56] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:19:02,961 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:19:02] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-13 14:19:02,969 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:19:02] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:19:06,384 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:19:06] "[32mGET /auth/admin-test HTTP/1.1[0m" 302 -
+2022-12-13 14:19:06,392 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:19:06] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:22:44,321 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-13 14:22:44,321 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 14:23:08,231 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:23:08] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 14:23:17,825 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 14:23:17,826 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:23:17] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 14:23:17,836 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:23:17] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-13 14:23:41,247 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:23:41] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-13 14:23:44,519 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:23:44] "GET /auth/admin-test HTTP/1.1" 200 -
+2022-12-13 14:31:00,440 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-13 14:31:00,440 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 14:31:05,968 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:31:05] "GET /auth/admin-test HTTP/1.1" 200 -
+2022-12-13 14:31:12,517 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:31:12] "GET /auth/moderator-test HTTP/1.1" 200 -
