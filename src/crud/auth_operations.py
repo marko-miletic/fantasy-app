@@ -31,5 +31,6 @@ def post_create_new_user(new_user_object: User) -> None:
         session.add(new_user_object)
         session.commit()
     except SQLAlchemyError as err:
+        session.rollback()
         logger.logging.error(err)
         raise err

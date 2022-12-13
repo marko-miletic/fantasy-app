@@ -68,7 +68,7 @@ def add_player(player_id: int):
 
         full_lineup_limits = lineup_operations.get_lineup_limits('full')
         if not all_new_player_checks(current_lineup_players, full_lineup_limits):
-            flash('Lineup checks failed for given player')
+            logger.logging.error(f'can not add player: player_id: {player_id}')
             return redirect(url_for('lineup.list_players'))
 
         lineup_operations.add_player_to_lineup(current_user.id, player_id)

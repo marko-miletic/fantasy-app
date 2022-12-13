@@ -1,4 +1,5 @@
 from sqlalchemy import or_
+from sqlalchemy.sql import func
 from sqlalchemy.exc import SQLAlchemyError
 
 from src.logs import logger
@@ -92,6 +93,18 @@ def get_matches_by_round(match_round: int) -> list:
     return matches_data
 
 
+def get_match_count_by_round(match_round) -> int:
+    try:
+        match_count = session.query(func.count(Match.id))\
+            .filter(Match.round == match_round)\
+            .scalar()
+    except SQLAlchemyError as err:
+        logger.logging.error(err)
+        raise err
+
+    return match_count
+
+
 def post_create_new_match(date: str, match_round: int, home_team_id: int, away_team_id):
     new_match = Match(date=date, match_round=match_round, home_team_id=home_team_id, away_team_id=away_team_id)
 
@@ -99,6 +112,7 @@ def post_create_new_match(date: str, match_round: int, home_team_id: int, away_t
         session.add(new_match)
         session.commit()
     except SQLAlchemyError as err:
+        session.rollback()
         logger.logging.error(err)
         raise err
 

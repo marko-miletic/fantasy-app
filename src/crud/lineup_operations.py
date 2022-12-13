@@ -15,6 +15,7 @@ def add_player_to_lineup(user_id: int, player_id: int):
         session.add(new_lineup_player)
         session.commit()
     except SQLAlchemyError as err:
+        session.rollback()
         logger.logging.error(err)
         raise err
 

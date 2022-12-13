@@ -3,6 +3,7 @@ from flask import Blueprint, make_response, redirect, url_for, flash
 
 from src.logs import logger
 from src.crud import match_operations
+from src.utility import match_checks
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -24,6 +25,12 @@ def all_matches():
 # test route for creating new match
 @match.route('/create-new/<int:home_team_id>/<int:away_team_id>/<int:match_round>', methods=['GET'])
 def create_new_match(match_round: int, home_team_id: int, away_team_id: int):
+    if not match_checks.all_new_match_checks(match_round=match_round,
+                                             home_team_id=home_team_id,
+                                             away_team_id=away_team_id):
+        logger.logging.info(f'can not create match: ht: {home_team_id}, at: {away_team_id}, round:{match_round}')
+        return redirect(url_for('match.all_matches'))
+
     try:
         match_operations.post_create_new_match(date='1980-1-1',
                                                match_round=match_round,

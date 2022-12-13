@@ -1,21 +1,120 @@
-2022-12-12 15:02:23,113 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2022-12-13 11:39:32,018 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:39:32,019 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:39:32,019 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:39:32] "[32mGET /match/all HTTP/1.1[0m" 302 -
+2022-12-13 11:39:32,028 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:39:32] "GET / HTTP/1.1" 200 -
+2022-12-13 11:41:28,769 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:41:28,769 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:41:28,770 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:41:28] "[32mGET /match/all HTTP/1.1[0m" 302 -
+2022-12-13 11:41:28,779 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:41:28] "GET / HTTP/1.1" 200 -
+2022-12-13 11:44:10,770 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://172.16.0.251:5000
-2022-12-12 15:02:23,113 :: INFO :: [33mPress CTRL+C to quit[0m
-2022-12-12 15:02:56,184 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2022-12-13 11:44:10,770 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 11:44:14,272 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:14] "GET / HTTP/1.1" 200 -
+2022-12-13 11:44:20,003 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:20] "GET /match/all HTTP/1.1" 200 -
+2022-12-13 11:44:24,809 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:44:24,809 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:44:24,810 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:24] "[32mGET /match/create-new/178/331/4 HTTP/1.1[0m" 302 -
+2022-12-13 11:44:24,817 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:24,817 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:24,818 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:24] "[32mGET /match/all HTTP/1.1[0m" 302 -
+2022-12-13 11:44:24,827 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:24] "GET / HTTP/1.1" 200 -
+2022-12-13 11:44:30,236 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:30,237 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:30,238 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:30] "[32mGET /match/all HTTP/1.1[0m" 302 -
+2022-12-13 11:44:30,247 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:30] "GET / HTTP/1.1" 200 -
+2022-12-13 11:44:38,105 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:38,105 :: ERROR :: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+2022-12-13 11:44:38,106 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:38] "[32mGET /match/all HTTP/1.1[0m" 302 -
+2022-12-13 11:44:38,116 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:44:38] "GET / HTTP/1.1" 200 -
+2022-12-13 11:45:56,504 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:45:56] "GET / HTTP/1.1" 200 -
+2022-12-13 11:46:03,278 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://172.16.0.251:5000
-2022-12-12 15:02:56,184 :: INFO :: [33mPress CTRL+C to quit[0m
-2022-12-12 15:03:34,415 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2022-12-13 11:46:03,278 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 11:46:36,092 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:46:36] "GET / HTTP/1.1" 200 -
+2022-12-13 11:46:45,788 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:46:45,789 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:46:45,790 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:46:45] "[32mGET /match/create-new/178/331/4 HTTP/1.1[0m" 302 -
+2022-12-13 11:46:45,808 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:46:45] "GET /match/all HTTP/1.1" 200 -
+2022-12-13 11:48:39,862 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://172.16.0.251:5000
-2022-12-12 15:03:34,415 :: INFO :: [33mPress CTRL+C to quit[0m
-2022-12-12 15:04:44,734 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:04:44] "GET / HTTP/1.1" 200 -
-2022-12-12 15:04:55,530 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:04:55] "[33mGET /points/round/44 HTTP/1.1[0m" 404 -
-2022-12-12 15:05:43,133 :: ERROR :: Error Message
+2022-12-13 11:48:39,863 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 11:49:10,853 :: ERROR :: Error Message
 Stack (most recent call last):
   File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 973, in _bootstrap
     self._bootstrap_inner()
@@ -47,26 +146,87 @@ Stack (most recent call last):
     rv = self.dispatch_request()
   File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
-  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "/Users/symphony/Documents/fantasy-application/src/routes/profile.py", line 28, in user_round_points
-    total_points_count = points_operations.get_points_per_user_per_round(user_id=current_user.id,
-  File "/Users/symphony/Documents/fantasy-application/src/crud/points_operations.py", line 38, in get_points_per_user_per_round
+  File "/Users/symphony/Documents/fantasy-application/src/routes/match.py", line 31, in create_new_match
     logger.logging.error('Error Message', stack_info=True)
-2022-12-12 15:05:43,133 :: ERROR :: non existing data for given input: user_id: 2, round: 44
-2022-12-12 15:05:43,134 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:05:43] "[32mGET /profile/points/round/44 HTTP/1.1[0m" 302 -
-2022-12-12 15:05:43,142 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:05:43] "GET /profile/ HTTP/1.1" 200 -
-2022-12-12 15:11:41,211 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2022-12-13 11:49:10,854 :: ERROR :: Exception on /match/create-new/0/2/3 [GET]
+Traceback (most recent call last):
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/Documents/fantasy-application/src/routes/match.py", line 32, in create_new_match
+    raise ValueError(f'match can not be created: '
+ValueError: match can not be created: round: 3, home_team: 0, away_team: 2
+2022-12-13 11:49:10,855 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:49:10] "[35m[1mGET /match/create-new/0/2/3 HTTP/1.1[0m" 500 -
+2022-12-13 11:50:53,151 :: ERROR :: Error Message
+Stack (most recent call last):
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 973, in _bootstrap
+    self._bootstrap_inner()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 1016, in _bootstrap_inner
+    self.run()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 683, in process_request_thread
+    self.finish_request(request, client_address)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 360, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/socketserver.py", line 747, in __init__
+    self.handle()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 363, in handle
+    super().handle()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/server.py", line 432, in handle
+    self.handle_one_request()
+  File "/usr/local/Cellar/python@3.10/3.10.8/Frameworks/Python.framework/Versions/3.10/lib/python3.10/http/server.py", line 420, in handle_one_request
+    method()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 335, in run_wsgi
+    execute(self.server.app)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/serving.py", line 322, in execute
+    application_iter = app(environ, start_response)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2548, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/Documents/fantasy-application/src/routes/match.py", line 31, in create_new_match
+    return redirect(url_for('match.all_matches'))
+2022-12-13 11:50:53,151 :: ERROR :: Exception on /match/create-new/0/2/3 [GET]
+Traceback (most recent call last):
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/Documents/fantasy-application/src/routes/match.py", line 32, in create_new_match
+ValueError: match can not be created: round: 3, home_team: 0, away_team: 2
+2022-12-13 11:50:53,151 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:50:53] "[35m[1mGET /match/create-new/0/2/3 HTTP/1.1[0m" 500 -
+2022-12-13 11:50:56,808 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
  * Running on http://172.16.0.251:5000
-2022-12-12 15:11:41,211 :: INFO :: [33mPress CTRL+C to quit[0m
-2022-12-12 15:11:47,391 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:47] "GET /profile/ HTTP/1.1" 200 -
-2022-12-12 15:11:48,825 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:48] "GET /profile/ HTTP/1.1" 200 -
-2022-12-12 15:11:54,684 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:54] "GET /profile_auth_test HTTP/1.1" 200 -
-2022-12-12 15:11:56,821 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:56] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
-2022-12-12 15:11:56,829 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:56] "GET / HTTP/1.1" 200 -
-2022-12-12 15:11:58,188 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:11:58] "GET /auth/login HTTP/1.1" 200 -
-2022-12-12 15:12:02,096 :: INFO :: [(bla), (bla@mail.com), (user)]
-2022-12-12 15:12:02,097 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:12:02] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
-2022-12-12 15:12:02,105 :: INFO :: 127.0.0.1 - - [12/Dec/2022 15:12:02] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-13 11:50:56,810 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 11:50:59,090 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:50:59] "[32mGET /match/create-new/0/2/3 HTTP/1.1[0m" 302 -
+2022-12-13 11:50:59,099 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:50:59] "GET /match/all HTTP/1.1" 200 -
+2022-12-13 11:51:05,516 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(3331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 3331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:51:05,516 :: ERROR :: (psycopg2.errors.ForeignKeyViolation) insert or update on table "match" violates foreign key constraint "match_away_team_id_fkey"
+DETAIL:  Key (away_team_id)=(3331) is not present in table "country".
+
+[SQL: INSERT INTO match (date, round, confirmed, home_score, away_score, home_team_id, away_team_id) VALUES (%(date)s, %(round)s, %(confirmed)s, %(home_score)s, %(away_score)s, %(home_team_id)s, %(away_team_id)s) RETURNING match.id]
+[parameters: {'date': '1980-1-1', 'round': 4, 'confirmed': False, 'home_score': None, 'away_score': None, 'home_team_id': 178, 'away_team_id': 3331}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+2022-12-13 11:51:05,518 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:51:05] "[32mGET /match/create-new/178/3331/4 HTTP/1.1[0m" 302 -
+2022-12-13 11:51:05,533 :: INFO :: 127.0.0.1 - - [13/Dec/2022 11:51:05] "GET /match/all HTTP/1.1" 200 -
