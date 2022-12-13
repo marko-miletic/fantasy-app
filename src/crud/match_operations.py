@@ -124,8 +124,11 @@ def update_change_match_status(match_id: int, new_status: str = 'confirmed'):
     }
 
     try:
-        session.query(Match).filter(Match.id == match_id).update({Match.confirmed: status_switch.get(new_status, False)})
+        session.query(Match)\
+            .filter(Match.id == match_id)\
+            .update({Match.confirmed: status_switch.get(new_status, False)})
         session.commit()
     except SQLAlchemyError as err:
+        session.rollback()
         logger.logging.error(err)
         raise err
