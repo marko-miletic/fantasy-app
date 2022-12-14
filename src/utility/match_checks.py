@@ -13,7 +13,7 @@ def check_playing_teams_by_round(match_teams: tuple, match_round: int) -> bool: 
     except Exception as err:
         logger.logging.error(err)
         raise err
-    return not (match_teams[0] in active_teams or match_teams[1] in active_teams)
+    return match_teams[0] not in active_teams and match_teams[1] not in active_teams
 
 
 def check_round_finished_status(match_round: int) -> bool:
