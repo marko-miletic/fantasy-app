@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, ForeignKey
+from sqlalchemy import Integer, Column, ForeignKey, Boolean
 
 from src.models import BaseClass
 
@@ -6,6 +6,7 @@ from src.models import BaseClass
 class UserLeague(BaseClass):
     id = Column(Integer, primary_key=True, index=True)
 
+    approved_access = Column(Boolean, nullable=False, unique=False, default=False)
     points = Column(Integer, nullable=False, unique=False)
 
     user_id = Column(Integer, ForeignKey('user.id'))

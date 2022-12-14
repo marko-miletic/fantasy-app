@@ -84,7 +84,8 @@ def get_matches_by_round(match_round: int) -> list:
         )\
             .join(home_country, home_country.id == Match.home_team_id)\
             .join(away_country, away_country.id == Match.away_team_id)\
-            .filter(Match.round == match_round).all()
+            .filter(Match.round == match_round)\
+            .all()
     except SQLAlchemyError as err:
         logger.logging.error(err)
         raise err
