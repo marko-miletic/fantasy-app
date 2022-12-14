@@ -56,6 +56,7 @@ def get_league_by_owner(owner_id: int) -> list:
             League.current_round,
             League.owner_id
         )\
+            .filter(League.owner_id == owner_id)\
             .all()
     except SQLAlchemyError as err:
         logger.logging.error(err)
