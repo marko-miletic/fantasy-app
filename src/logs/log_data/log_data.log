@@ -305,3 +305,194 @@ DETAIL:  Key (away_team_id)=(3331) is not present in table "country".
 2022-12-13 14:31:05,968 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:31:05] "GET /auth/admin-test HTTP/1.1" 200 -
 2022-12-13 14:31:12,517 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:31:12] "GET /auth/moderator-test HTTP/1.1" 200 -
 2022-12-13 14:45:48,690 :: INFO :: 127.0.0.1 - - [13/Dec/2022 14:45:48] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-13 15:30:49,724 :: INFO :: 127.0.0.1 - - [13/Dec/2022 15:30:49] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-13 19:43:42,247 :: ERROR :: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT "user".id AS user_id, "user".name AS user_name, "user".email AS user_email, "user".password AS user_password, "user".role AS user_role 
+FROM "user" 
+WHERE "user".id = %(id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'id_1': '1', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-12-13 19:43:42,253 :: ERROR :: Exception on /auth/moderator-test [GET]
+Traceback (most recent call last):
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/Documents/fantasy-application/src/core/roles.py", line 12, in authorize
+    if current_user.role == 2:
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/local.py", line 316, in __get__
+    obj = instance._get_current_object()  # type: ignore[misc]
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/werkzeug/local.py", line 520, in _get_current_object
+    return get_name(local())  # type: ignore
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 25, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 372, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/symphony/Documents/fantasy-application/src/build/create_app.py", line 26, in load_user
+    return get_user_by_id(user_id)
+  File "/Users/symphony/Documents/fantasy-application/src/crud/auth_operations.py", line 17, in get_user_by_id
+    raise err
+  File "/Users/symphony/Documents/fantasy-application/src/crud/auth_operations.py", line 13, in get_user_by_id
+    user = session.query(User).filter(User.id == user_id).first()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1714, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+[SQL: SELECT "user".id AS user_id, "user".name AS user_name, "user".email AS user_email, "user".password AS user_password, "user".role AS user_role 
+FROM "user" 
+WHERE "user".id = %(id_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'id_1': '1', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-12-13 19:43:42,283 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:43:42] "[35m[1mGET /auth/moderator-test HTTP/1.1[0m" 500 -
+2022-12-13 19:45:02,138 :: ERROR :: Can't reconnect until invalid transaction is rolled back. (Background on this error at: https://sqlalche.me/e/14/8s2b)
+2022-12-13 19:45:02,139 :: ERROR :: Exception on / [GET]
+Traceback (most recent call last):
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/Users/symphony/Documents/fantasy-application/src/routes/index.py", line 13, in main
+    return render_template('index.html')
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/templating.py", line 128, in _render
+    app.update_template_context(context)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask/app.py", line 994, in update_template_context
+    context.update(func())
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 407, in _user_context_processor
+    return dict(current_user=_get_user())
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/utils.py", line 372, in _get_user
+    current_app.login_manager._load_user()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/flask_login/login_manager.py", line 364, in _load_user
+    user = self._user_callback(user_id)
+  File "/Users/symphony/Documents/fantasy-application/src/build/create_app.py", line 26, in load_user
+    return get_user_by_id(user_id)
+  File "/Users/symphony/Documents/fantasy-application/src/crud/auth_operations.py", line 17, in get_user_by_id
+    raise err
+  File "/Users/symphony/Documents/fantasy-application/src/crud/auth_operations.py", line 13, in get_user_by_id
+    user = session.query(User).filter(User.id == user_id).first()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1714, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1798, in _execute_context
+    conn = self._revalidate_connection()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 645, in _revalidate_connection
+    self._invalid_transaction()
+  File "/Users/symphony/.local/share/virtualenvs/fantasy-application-F7-8LHlt/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 617, in _invalid_transaction
+    raise exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction is rolled back. (Background on this error at: https://sqlalche.me/e/14/8s2b)
+2022-12-13 19:45:02,142 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:45:02] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2022-12-13 19:45:17,761 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.58.166:5000
+2022-12-13 19:45:17,761 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-13 19:45:27,353 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:45:27] "GET / HTTP/1.1" 200 -
+2022-12-13 19:45:29,302 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:45:29] "GET /auth/login HTTP/1.1" 200 -
+2022-12-13 19:45:35,445 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-13 19:45:35,447 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:45:35] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-13 19:45:35,459 :: INFO :: 127.0.0.1 - - [13/Dec/2022 19:45:35] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 11:36:56,462 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-14 11:36:56,462 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-14 11:37:03,109 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:03] "GET / HTTP/1.1" 200 -
+2022-12-14 11:37:03,352 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2022-12-14 11:37:07,076 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:07] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-14 11:37:07,086 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:07] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:37:14,046 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-14 11:37:14,047 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:14] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 11:37:14,057 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:14] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 11:37:20,420 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:20] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-14 11:37:20,428 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:20] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:37:57,084 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:37:57] "GET / HTTP/1.1" 200 -
+2022-12-14 11:38:06,162 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:06] "GET / HTTP/1.1" 200 -
+2022-12-14 11:38:11,553 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:11] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-14 11:38:11,561 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:11] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:38:35,851 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-14 11:38:35,851 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-14 11:38:39,710 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:39] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-14 11:38:47,373 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:47] "GET /auth/admin-test HTTP/1.1" 200 -
+2022-12-14 11:38:51,787 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:51] "[33mGET /auth/ HTTP/1.1[0m" 404 -
+2022-12-14 11:38:59,050 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:59] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-14 11:38:59,061 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:38:59] "GET / HTTP/1.1" 200 -
+2022-12-14 11:39:00,830 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:00] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:39:06,071 :: INFO :: [(bla), (bla@mail.com), (user)]
+2022-12-14 11:39:06,072 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:06] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 11:39:06,081 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:06] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 11:39:49,976 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:49] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-14 11:39:49,993 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:49] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:39:53,075 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:39:53] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 11:40:39,474 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:39] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-14 11:40:39,479 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:39] "GET / HTTP/1.1" 200 -
+2022-12-14 11:40:41,405 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:41] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-14 11:40:41,411 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:41] "GET /auth/login?next=%2Fauth%2Flogout HTTP/1.1" 200 -
+2022-12-14 11:40:50,898 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:50] "GET /auth/signup HTTP/1.1" 200 -
+2022-12-14 11:40:57,994 :: INFO :: None
+2022-12-14 11:40:58,004 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:58] "[32mPOST /auth/signup HTTP/1.1[0m" 302 -
+2022-12-14 11:40:58,008 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:40:58] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 11:41:03,265 :: INFO :: [(gla), (gla@mail.com), (user)]
+2022-12-14 11:41:03,266 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:41:03] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 11:41:03,273 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:41:03] "GET /profile_auth_test HTTP/1.1" 200 -

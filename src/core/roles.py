@@ -7,16 +7,9 @@ def role_required(role_value: int, redirect_endpoint: str = 'auth.login'):
     def decorator(func):
         @wraps(func)
         def authorize(*args, **kwargs):
-
-            # admin user pass for all roles
-            if current_user.role == 2:
-                return func(*args, **kwargs)
-
-            # roles permission check for non-admin roles
-            if not current_user.role == role_value:
+            if current_user.role < role_value:
                 return redirect(url_for(redirect_endpoint))
             return func(*args, **kwargs)
-
         return authorize
     return decorator
 
