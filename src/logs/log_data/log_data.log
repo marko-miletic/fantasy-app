@@ -496,3 +496,30 @@ sqlalchemy.exc.PendingRollbackError: Can't reconnect until invalid transaction i
 2022-12-14 11:41:03,265 :: INFO :: [(gla), (gla@mail.com), (user)]
 2022-12-14 11:41:03,266 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:41:03] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
 2022-12-14 11:41:03,273 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:41:03] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 11:58:28,665 :: INFO :: 127.0.0.1 - - [14/Dec/2022 11:58:28] "[33mGET /admin HTTP/1.1[0m" 404 -
+2022-12-14 12:00:13,157 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:00:13] "[32mGET /auth/moderator-test HTTP/1.1[0m" 302 -
+2022-12-14 12:00:13,165 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:00:13] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 12:00:19,773 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-14 12:00:19,774 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:00:19] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 12:00:19,783 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:00:19] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 12:01:06,519 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:01:06] "[33mGET /admin HTTP/1.1[0m" 404 -
+2022-12-14 12:02:24,119 :: INFO :: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.16.0.251:5000
+2022-12-14 12:02:24,119 :: INFO :: [33mPress CTRL+C to quit[0m
+2022-12-14 12:02:28,272 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:02:28] "GET /admin HTTP/1.1" 200 -
+2022-12-14 12:09:37,282 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:09:37] "[32mGET /admin/update-user-status/4/moderator HTTP/1.1[0m" 302 -
+2022-12-14 12:09:37,290 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:09:37] "GET /admin HTTP/1.1" 200 -
+2022-12-14 12:09:57,620 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:09:57] "[32mGET /auth/logout HTTP/1.1[0m" 302 -
+2022-12-14 12:09:57,633 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:09:57] "GET / HTTP/1.1" 200 -
+2022-12-14 12:09:59,997 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:09:59] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 12:10:04,039 :: INFO :: [(gla), (gla@mail.com), (content manager)]
+2022-12-14 12:10:04,040 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:04] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 12:10:04,049 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:04] "GET /profile_auth_test HTTP/1.1" 200 -
+2022-12-14 12:10:10,274 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:10] "GET /auth/moderator-test HTTP/1.1" 200 -
+2022-12-14 12:10:16,207 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:16] "[32mGET /auth/admin-test HTTP/1.1[0m" 302 -
+2022-12-14 12:10:16,216 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:16] "GET /auth/login HTTP/1.1" 200 -
+2022-12-14 12:10:23,131 :: INFO :: [(admin), (admin@mail.com), (admin)]
+2022-12-14 12:10:23,132 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:23] "[32mPOST /auth/login HTTP/1.1[0m" 302 -
+2022-12-14 12:10:23,141 :: INFO :: 127.0.0.1 - - [14/Dec/2022 12:10:23] "GET /profile_auth_test HTTP/1.1" 200 -

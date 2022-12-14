@@ -17,6 +17,7 @@ def build_app():
     app.register_blueprint(routes.lineup, url_prefix='/lineup')
     app.register_blueprint(routes.match, url_prefix='/match')
     app.register_blueprint(routes.profile, url_prefix='/profile')
+    app.register_blueprint(routes.admin, url_prefix='/admin')
     
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
