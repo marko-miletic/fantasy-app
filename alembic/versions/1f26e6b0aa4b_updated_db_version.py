@@ -1,4 +1,4 @@
-"""updated db version
+"""
 
 Revision ID: 1f26e6b0aa4b
 Revises: 

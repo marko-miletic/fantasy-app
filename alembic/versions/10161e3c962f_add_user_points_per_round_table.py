@@ -1,4 +1,4 @@
-"""add user points per round table
+"""
 
 Revision ID: 10161e3c962f
 Revises: 3e38965612f3
