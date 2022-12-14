@@ -26,7 +26,6 @@ def test_all_new_player_checks():
     test_lineup = lineup_operations.get_lineup(test_user.id)
 
     session.query(SelectedPlayers).filter(SelectedPlayers.user_id == test_user.id).delete()
-    session.commit()
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 
