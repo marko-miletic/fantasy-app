@@ -18,4 +18,4 @@ class UserLeague(BaseClass):
         self.league_id = league_id
 
     def __repr__(self):
-        return f'[({self.user_id}), ({self.league_id}, ({self.points})]'
+        return f'[({self.user_id}), ({self.league_id}, ({self.points}), ({self.approved_access})]'

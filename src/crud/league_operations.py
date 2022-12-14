@@ -16,6 +16,30 @@ LEAGUE_TEMPLATE = [
 ]
 
 
+def post_add_user_to_league(user_id: int, league_id: int):
+    new_league_user = UserLeague(user_id=user_id, league_id=league_id)
+
+    try:
+        session.add(new_league_user)
+        session.commit()
+    except SQLAlchemyError as err:
+        session.rollback()
+        logger.logging.error(err)
+        raise err
+
+
+def update_approve_new_league_player(league_id: int, user_id: int) -> None:
+    try:
+        session.query(UserLeague)\
+            .filter(and_(UserLeague.league_id == league_id, UserLeague.user_id == user_id))\
+            .update({UserLeague.approved_access: True})
+        session.commit()
+    except SQLAlchemyError as err:
+        session.rollback()
+        logger.logging.error(err)
+        raise err
+
+
 def post_create_new_league(league_name: str, owner_id) -> None:
     try:
         new_league = League(name=league_name, owner_id=owner_id)
@@ -110,15 +134,3 @@ def get_league_rankings_by_league_id(league_id: int) -> list:
 
     league_ranking = [dict(zip(league_ranking_template, tuple(row))) for row in league_players]
     return league_ranking
-
-
-def update_approve_new_league_player(league_id: int, user_id: int) -> None:
-    try:
-        session.query(UserLeague)\
-            .filter(and_(UserLeague.league_id == league_id, UserLeague.user_id == user_id))\
-            .update({UserLeague.approved_access: True})
-        session.commit()
-    except SQLAlchemyError as err:
-        session.rollback()
-        logger.logging.error(err)
-        raise err
