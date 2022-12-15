@@ -1,8 +1,9 @@
-from flask import Blueprint, make_response, redirect, url_for, flash
+from flask import Blueprint, make_response, redirect, url_for, flash, request
 from flask_login import login_required, current_user
 
 from src.logs import logger
 from src.crud import league_operations
+from src.utility import league_checks
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -65,6 +66,9 @@ def add_new_user_to_league(league_id: int, user_id: int):
 @login_required
 def approve_league_player(league_id: int, user_id: int):
     try:
+        if not league_checks.user_in_league_check(league_id=league_id, user_id=user_id):
+            return redirect(request.url)
+
         league_operations.update_approve_new_league_player(league_id=league_id, user_id=user_id)
 
         return redirect(url_for('league.league_by_id', league_id=league_id))
