@@ -12,6 +12,8 @@ from .goals_scored import GoalsScored
 from .selected_players import SelectedPlayers
 from .lineup_limits import LineupLimits
 from .user_points import UserPoints
+from .league import League
+from .user_league import UserLeague
 
 # dialect+driver://username:password@host:port/database
 

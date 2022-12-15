@@ -1,6 +1,10 @@
+pytest tests/admin_operations_test.py
+
 pytest tests/auth_operations_test.py
 
 pytest tests/db_fill_test.py
+
+pytest tests/league_operations_test.py
 
 pytest tests/lineup_operations_test.py
 

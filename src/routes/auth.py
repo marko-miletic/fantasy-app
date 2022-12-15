@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request
-from flask_login import login_user, login_required, logout_user
+from flask import Blueprint, render_template, redirect, url_for, flash, request, make_response
+from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from src.logs import logger
 from src.models import User
 from src.crud import auth_operations
+from src.core.roles import role_required, role_names
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -77,3 +78,17 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for('index.main'))
+
+
+@auth.route('moderator-test')
+@role_required(role_names(role='moderator'))
+@login_required
+def moderator_test():
+    return make_response({'status': 200, 'role': current_user.role})
+
+
+@auth.route('admin-test')
+@role_required(role_names(role='admin'))
+@login_required
+def admin_test():
+    return make_response({'status': 200, 'role': current_user.role})

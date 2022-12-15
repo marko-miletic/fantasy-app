@@ -18,8 +18,6 @@ def test_post_user_point_for_given_round():
     points_data = session.query(UserPoints).filter(UserPoints.user_id == test_user.id).first()
 
     session.query(UserPoints).filter(UserPoints.user_id == test_user.id).delete()
-    session.commit()
-
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 
@@ -44,8 +42,6 @@ def test_get_points_per_user_per_round():
     test_user_points = int(test_user_points.points_count)
 
     session.query(UserPoints).filter(UserPoints.user_id == test_user.id).delete()
-    session.commit()
-
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 
@@ -72,8 +68,6 @@ def test_get_points_per_user():
     test_user_points_2 = int(test_user_points_2.points_count)
 
     session.query(UserPoints).filter(UserPoints.user_id == test_user.id).delete()
-    session.commit()
-
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 

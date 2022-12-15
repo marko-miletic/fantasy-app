@@ -10,13 +10,14 @@ def test_add_player_to_lineup():
     test_user = User(name='test', email='test', password='test')
     test_user.id = -1
 
-    auth_operations.post_create_new_user(test_user)
+    session.add(test_user)
+    session.commit()
+
     lineup_operations.add_player_to_lineup(test_user.id, 0)
 
     test_lineup = session.query(SelectedPlayers).filter(SelectedPlayers.user_id == test_user.id).scalar()
 
     session.query(SelectedPlayers).filter(SelectedPlayers.user_id == test_user.id).delete()
-    session.commit()
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 
@@ -27,13 +28,14 @@ def test_get_lineup():
     test_user = User(name='test', email='test', password='test')
     test_user.id = -1
 
-    auth_operations.post_create_new_user(test_user)
+    session.add(test_user)
+    session.commit()
+
     lineup_operations.add_player_to_lineup(test_user.id, 0)
 
     test_lineup = lineup_operations.get_lineup(test_user.id)
 
     session.query(SelectedPlayers).filter(SelectedPlayers.user_id == test_user.id).delete()
-    session.commit()
     session.query(User).filter(User.id == test_user.id).delete()
     session.commit()
 

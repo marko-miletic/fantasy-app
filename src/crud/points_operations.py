@@ -16,6 +16,7 @@ def post_user_points_for_given_round(user_id: int, round_number: int, points_cou
         session.add(new_user_points)
         session.commit()
     except SQLAlchemyError as err:
+        session.rollback()
         logger.logging.error(err)
         raise err
 
