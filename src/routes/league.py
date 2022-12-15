@@ -15,7 +15,6 @@ league = Blueprint('league', __name__, template_folder=TEMPLATES_DIRECTORY_PATH)
 def user_leagues():
     try:
         user_leagues_data = league_operations.get_leagues_by_user(user_id=current_user.id)
-
         return make_response(user_leagues_data)
     except Exception as err:
         logger.logging.error(err)
@@ -28,7 +27,6 @@ def user_leagues():
 def user_created_leagues():
     try:
         user_created_leagues_data = league_operations.get_league_by_owner(owner_id=current_user.id)
-        
         return make_response(user_created_leagues_data)
     except Exception as err:
         logger.logging.error(err)
@@ -41,7 +39,6 @@ def user_created_leagues():
 def create_new_league(league_name: str):
     try:
         league_operations.post_create_new_league(league_name=league_name, owner_id=current_user.id)
-
         return redirect(url_for('league.user_created_league'))
     except Exception as err:
         logger.logging.error(err)
@@ -54,7 +51,6 @@ def create_new_league(league_name: str):
 def add_new_user_to_league(league_id: int, user_id: int):
     try:
         league_operations.post_add_user_to_league(user_id=user_id, league_id=league_id)
-
         return redirect(url_for('league.league_by_id', league_id=league_id))
     except Exception as err:
         logger.logging.error(err)
@@ -70,7 +66,6 @@ def approve_league_player(league_id: int, user_id: int):
             return redirect(request.url)
 
         league_operations.update_approve_new_league_player(league_id=league_id, user_id=user_id)
-
         return redirect(url_for('league.league_by_id', league_id=league_id))
     except Exception as err:
         logger.logging.error(err)
@@ -83,7 +78,6 @@ def approve_league_player(league_id: int, user_id: int):
 def league_by_id(league_id: int):
     try:
         league_data = league_operations.get_league_by_id(league_id=league_id)
-
         return make_response(league_data)
     except Exception as err:
         logger.logging.error(err)
@@ -96,7 +90,6 @@ def league_by_id(league_id: int):
 def league_by_id_ranking(league_id: int):
     try:
         league_data = league_operations.get_league_rankings_by_league_id(league_id=league_id)
-
         return make_response(league_data)
     except Exception as err:
         logger.logging.error(err)

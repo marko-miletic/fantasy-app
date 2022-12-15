@@ -27,7 +27,6 @@ def lineup_all():
 def lineup_active():
     try:
         lineup_data = lineup_operations.get_lineup(user_id=current_user.id, active=True)
-
         return make_response(lineup_data)
     except Exception as err:
         logger.logging.error(err)
