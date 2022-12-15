@@ -4,3 +4,4 @@ from .lineup import lineup
 from .match import match
 from .profile import profile
 from .admin import admin
+from .league import league
