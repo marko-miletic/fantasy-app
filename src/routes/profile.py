@@ -2,7 +2,7 @@ from flask import Blueprint, make_response, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from src.logs import logger
-from src.crud import points_operations
+from src.crud import points_operations, league_operations
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
