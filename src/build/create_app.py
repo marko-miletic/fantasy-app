@@ -19,6 +19,7 @@ def build_app():
     app.register_blueprint(routes.profile, url_prefix='/profile')
     app.register_blueprint(routes.admin, url_prefix='/admin')
     app.register_blueprint(routes.league, url_prefix='/league')
+    app.register_blueprint(routes.moderator, url_prefix='/moderator')
     
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)

@@ -5,3 +5,4 @@ from .match import match
 from .profile import profile
 from .admin import admin
 from .league import league
+from .moderator import moderator
