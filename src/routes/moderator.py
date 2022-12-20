@@ -4,6 +4,7 @@ from flask_login import current_user
 from src.core.roles import merged_login_role_required_decorator
 from src.logs import logger
 from src.crud import moderator_operations
+from src.utility.moderator_points_utility import define_player_points_and_goals_per_match
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -50,13 +51,20 @@ def moderator_complete_match_get(match_id: int):
 def moderator_complete_match_post(match_id: int):
     try:
         match = moderator_operations.get_complete_match_data(match_id=match_id)
-        home_team_points_score = 0
+
         for home_player in match.get('home_team', None):
-            home_team_points_score += int(request.form[str(home_player.get('id', None))])
-        away_team_points_score = 0
-        for away_player in match.get('home_team', None):
-            away_team_points_score += int(request.form[str(away_player.get('id', None))])
-        return make_response({'home_score': home_team_points_score, 'away_score': away_team_points_score})
+            define_player_points_and_goals_per_match(oposite_team_score=int(request.form['away_team_score']),
+                                                     player_score=int(request.form[str(home_player.get('id', None))]),
+                                                     player=home_player,
+                                                     match_id=match_id)
+
+        for away_player in match.get('away_team', None):
+            define_player_points_and_goals_per_match(oposite_team_score=int(request.form['home_team_score']),
+                                                     player_score=int(request.form[str(away_player.get('id', None))]),
+                                                     player=away_player,
+                                                     match_id=match_id)
+
+        return make_response({'status': 200})
     except Exception as err:
         logger.logging.error(err)
         flash('An error occurred while loading match data')

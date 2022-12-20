@@ -14,6 +14,18 @@
     <p>post: /moderator/complete-match/{{ match_data.get('id', None) }}</p>
 
     <form method="POST" action="/moderator/complete-match/{{ match_data.get('id', None) }}">
+        <h1> {{ match_data.get('home_team', 'bla')}} score </h1>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="number" id="home_team_score" name="home_team_score" placeholder="0" autofocus="" value={{ 0 }}>
+            </div>
+        </div>
+        <h1> {{ match_data.get('away_team', 'bla')}} score </h1>
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="number" id="away_team_score" name="away_team_score" placeholder="0" autofocus="" value={{ 0 }}>
+            </div>
+        </div>
 
         <h1> Home team players </h1>
         {% for home_player in home_team: %}
@@ -35,6 +47,6 @@
             </div>
         {% endfor %}
 
-        <button class="button is-block is-info is-large is-fullwidth">Login</button>
+        <button class="button is-block is-info is-large is-fullwidth"> Complete </button>
     </form>
 {% endblock %}
