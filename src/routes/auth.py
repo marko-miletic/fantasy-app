@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from src.logs import logger
 from src.models import User
 from src.crud import auth_operations
-from src.core.roles import role_required, role_names
+from src.core.roles import merged_login_role_required_decorator
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -81,14 +81,12 @@ def logout():
 
 
 @auth.route('moderator-test')
-@role_required(role_names(role='moderator'))
-@login_required
+@merged_login_role_required_decorator(role_value='moderator')
 def moderator_test():
     return make_response({'status': 200, 'role': current_user.role})
 
 
 @auth.route('admin-test')
-@role_required(role_names(role='admin'))
-@login_required
+@merged_login_role_required_decorator(role_value='admin')
 def admin_test():
     return make_response({'status': 200, 'role': current_user.role})

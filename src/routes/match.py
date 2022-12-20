@@ -1,7 +1,7 @@
 from flask import Blueprint, make_response, redirect, url_for, flash
 from flask_login import login_required, current_user
 
-from src.core.roles import role_required, role_names
+from src.core.roles import merged_login_role_required_decorator
 from src.logs import logger
 from src.crud import match_operations
 from src.utility import match_checks
@@ -38,8 +38,7 @@ def matches_by_round(match_round: int):
 
 # test route for creating new match
 @match.route('/create-new/<int:home_team_id>/<int:away_team_id>/<int:match_round>', methods=['GET'])
-@role_required(role_names(role='moderator'))
-@login_required
+@merged_login_role_required_decorator(role_value='moderator')
 def create_new_match(match_round: int, home_team_id: int, away_team_id: int):
     if not match_checks.all_new_match_checks(match_round=match_round,
                                              home_team_id=home_team_id,
@@ -61,8 +60,7 @@ def create_new_match(match_round: int, home_team_id: int, away_team_id: int):
 
 # test route for updating match status
 @match.route('/change-status/<int:match_id>/<string:new_status>', methods=['GET'])
-@role_required(role_names(role='moderator'))
-@login_required
+@merged_login_role_required_decorator(role_value='moderator')
 def update_match_status(match_id: int, new_status: str):
     try:
         match_operations.update_change_match_status(match_id=match_id, new_status=new_status)
