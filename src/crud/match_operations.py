@@ -74,7 +74,7 @@ def get_matches_by_round(match_round: int) -> list:
 
 def get_match_by_id(match_id: int) -> dict:
     try:
-        match = get_base_match_query().filter(Match.id == match_id).first
+        match = get_base_match_query().filter(Match.id == match_id).first()
     except SQLAlchemyError as err:
         logger.logging.error(err)
         raise err

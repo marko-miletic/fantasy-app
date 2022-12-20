@@ -49,12 +49,27 @@ def test_get_matches_by_round():
     session.add(test_match)
     session.commit()
 
-    round_matches = match_operations.get_matches_by_round(test_match.round)
+    round_matches = match_operations.get_matches_by_round(match_round=test_match.round)
 
     session.query(Match).filter(Match.round == test_match.round).delete()
     session.commit()
 
     assert len(round_matches) == 1 and round_matches[0].get('round', None) == test_match.round
+
+
+def test_get_matches_by_id():
+    test_match = Match(date='1980-1-1', match_round=-1, home_team_id=0, away_team_id=1)
+    test_match.id = -1
+
+    session.add(test_match)
+    session.commit()
+
+    id_match = match_operations.get_match_by_id(match_id=test_match.id)
+
+    session.query(Match).filter(Match.id == test_match.id).delete()
+    session.commit()
+
+    assert id_match is not None and id_match.get('id', None) == test_match.id
 
 
 def test_post_goals_scored():
