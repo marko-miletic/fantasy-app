@@ -10,6 +10,8 @@ pytest tests/lineup_operations_test.py
 
 pytest tests/match_operations_test.py
 
+pytest tests/moderator_operations_test.py
+
 pytest tests/player_operations_test.py
 
 pytest tests/points_operations_test.py
