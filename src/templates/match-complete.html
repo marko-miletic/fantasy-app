@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1> Match data </h1>
+    <ul>
+        <li>{{ match_data.get('id', 'bla')}} </li>
+        <li>{{ match_data.get('date', 'bla')}} </li>
+        <li>{{ match_data.get('round', 'bla')}} </li>
+        <li>{{ match_data.get('home_team', 'bla')}} </li>
+        <li>{{ match_data.get('away_team', 'bla')}} </li>
+    </ul>
+    <br>
+    <p>post: /moderator/complete-match/{{ match_data.get('id', None) }}</p>
+
+    <form method="POST" action="/moderator/complete-match/{{ match_data.get('id', None) }}">
+
+        <h1> Home team players </h1>
+        {% for home_player in home_team: %}
+            <p> {{ home_player.get('name', 'error while loading player name')}} {{ home_player.get('id', 'error while loading player id')}}</p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ home_player.get('id') }}" name="{{ home_player.get('id') }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+        {% endfor %}
+
+        <h1> Away team players </h1>
+        {% for away_player in away_team: %}
+            <p> {{ away_player.get('name', 'error while loading player name')}} {{ away_player.get('id', 'error while loading player id')}}</p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ away_player.get('id') }}" name="{{ away_player.get('id') }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+        {% endfor %}
+
+        <button class="button is-block is-info is-large is-fullwidth">Login</button>
+    </form>
+{% endblock %}
