@@ -21,5 +21,3 @@ def test_get_complete_match_data():
     assert match.get('match_data', None).get('id', None) == test_match.id and \
            match.get('home_team', None)[0].get('country_id', None) == test_match.home_team_id and \
            match.get('away_team', None)[0].get('country_id', None) == test_match.away_team_id
-
-    
