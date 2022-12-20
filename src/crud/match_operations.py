@@ -10,6 +10,39 @@ from sqlalchemy.orm import aliased
 
 session = SessionLocal()
 
+MATCH_TEMPLATE = [
+    'id',
+    'date',
+    'round',
+    'home_team_id',
+    'home_team',
+    'away_team_id',
+    'away_team',
+    'home_team_score',
+    'away_team_score',
+    'confirmed'
+]
+
+
+def get_base_match_query() -> str:
+    home_country = aliased(Country)
+    away_country = aliased(Country)
+    match_query = session.query(
+        Match.id,
+        Match.date,
+        Match.round,
+        Match.home_team_id,
+        home_country.country,
+        Match.away_team_id,
+        away_country.country,
+        Match.home_score,
+        Match.away_score,
+        Match.confirmed
+    )\
+        .join(home_country, home_country.id == Match.home_team_id)\
+        .join(away_country, away_country.id == Match.away_team_id)
+    return match_query
+
 
 def get_matches_by_status(status: str = 'all') -> list:
     match_status_switch = {
@@ -18,80 +51,40 @@ def get_matches_by_status(status: str = 'all') -> list:
         'active': Match.confirmed == False  # active_matches
     }
 
-    matches_template = [
-        'date',
-        'round',
-        'home_team_id',
-        'home_team',
-        'away_team_id',
-        'away_team',
-        'home_team_score',
-        'away_team_score',
-        'confirmed'
-    ]
-
     try:
-        home_country = aliased(Country)
-        away_country = aliased(Country)
-        matches = session.query(
-            Match.date,
-            Match.round,
-            Match.home_team_id,
-            home_country.country,
-            Match.away_team_id,
-            away_country.country,
-            Match.home_score,
-            Match.away_score,
-            Match.confirmed
-        )\
-            .join(home_country, home_country.id == Match.home_team_id)\
-            .join(away_country, away_country.id == Match.away_team_id)\
-            .filter(match_status_switch.get(status, 'all')).all()
+        matches = get_base_match_query().filter(match_status_switch.get(status, 'all')).all()
     except SQLAlchemyError as err:
         logger.logging.error(err)
         raise err
 
-    matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
+    matches_data = [dict(zip(MATCH_TEMPLATE, tuple(row))) for row in matches]
     return matches_data
 
 
 def get_matches_by_round(match_round: int) -> list:
-    matches_template = [
-        'date',
-        'round',
-        'home_team_id',
-        'home_team',
-        'away_team_id',
-        'away_team',
-        'home_team_score',
-        'away_team_score',
-        'confirmed'
-    ]
-
     try:
-        home_country = aliased(Country)
-        away_country = aliased(Country)
-        matches = session.query(
-            Match.date,
-            Match.round,
-            Match.home_team_id,
-            home_country.country,
-            Match.away_team_id,
-            away_country.country,
-            Match.home_score,
-            Match.away_score,
-            Match.confirmed
-        )\
-            .join(home_country, home_country.id == Match.home_team_id)\
-            .join(away_country, away_country.id == Match.away_team_id)\
-            .filter(Match.round == match_round)\
-            .all()
+        matches = get_base_match_query().filter(Match.round == match_round).all()
     except SQLAlchemyError as err:
         logger.logging.error(err)
         raise err
 
-    matches_data = [dict(zip(matches_template, tuple(row))) for row in matches]
+    matches_data = [dict(zip(MATCH_TEMPLATE, tuple(row))) for row in matches]
     return matches_data
+
+
+def get_match_by_id(match_id: int) -> dict:
+    try:
+        match = get_base_match_query().filter(Match.id == match_id).first
+    except SQLAlchemyError as err:
+        logger.logging.error(err)
+        raise err
+
+    if match is None:
+        logger.logging.error('Error Message', stack_info=True)
+        raise ValueError(f'non existing match for match data: match_id: {match_id}')
+
+    match_data = dict(zip(MATCH_TEMPLATE, match))
+    return match_data
 
 
 def get_match_count_by_round(match_round) -> int:
