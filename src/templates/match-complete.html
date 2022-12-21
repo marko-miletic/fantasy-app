@@ -32,9 +32,28 @@
             <p> {{ home_player.get('name', 'error while loading player name')}} {{ home_player.get('id', 'error while loading player id')}}</p>
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="number" id="{{ home_player.get('id') }}" name="{{ home_player.get('id') }}" placeholder="0" autofocus="" value={{ 0 }}>
+                    <input class="input is-large" type="number" id="{{ 'goals_' + home_player.get('id')|string }}" name="{{ 'goals_' + home_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
                 </div>
             </div>
+            <p> Assists </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'assists_' + home_player.get('id')|string }}" name="{{ 'assists_' + home_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <p> Red cards </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'cards_' + home_player.get('id')|string }}" name="{{ 'cards_' + home_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <p> Minutes played </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'minutes_' + home_player.get('id')|string }}" name="{{ 'minutes_' + home_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <br>
         {% endfor %}
 
         <h1> Away team players </h1>
@@ -42,9 +61,28 @@
             <p> {{ away_player.get('name', 'error while loading player name')}} {{ away_player.get('id', 'error while loading player id')}}</p>
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="number" id="{{ away_player.get('id') }}" name="{{ away_player.get('id') }}" placeholder="0" autofocus="" value={{ 0 }}>
+                    <input class="input is-large" type="number" id="{{ 'goals_' + away_player.get('id')|string }}" name="{{ 'goals_' + away_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
                 </div>
             </div>
+            <p> Assists </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'assists_' + away_player.get('id')|string }}" name="{{ 'assists_' + away_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <p> Red cards </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'cards_' + away_player.get('id')|string }}" name="{{ 'cards_' + away_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <p> Minutes played </p>
+            <div class="field">
+                <div class="control">
+                    <input class="input is-large" type="number" id="{{ 'minutes_' + away_player.get('id')|string }}" name="{{ 'minutes_' + away_player.get('id')|string }}" placeholder="0" autofocus="" value={{ 0 }}>
+                </div>
+            </div>
+            <br>
         {% endfor %}
 
         <button class="button is-block is-info is-large is-fullwidth"> Complete </button>

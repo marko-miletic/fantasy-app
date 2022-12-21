@@ -53,14 +53,22 @@ def moderator_complete_match_post(match_id: int):
         match = moderator_operations.get_complete_match_data(match_id=match_id)
 
         for home_player in match.get('home_team', None):
+            home_player_id = home_player.get('id', None)
             define_player_points_and_goals_per_match(oposite_team_score=int(request.form['away_team_score']),
-                                                     player_score=int(request.form[str(home_player.get('id', None))]),
+                                                     player_score=int(request.form[f'goals_{home_player_id}']),
+                                                     player_assists=int(request.form[f'assists_{home_player_id}']),
+                                                     player_cards=int(request.form[f'cards_{home_player_id}']),
+                                                     player_minutes=int(request.form[f'minutes_{home_player_id}']),
                                                      player=home_player,
                                                      match_id=match_id)
 
         for away_player in match.get('away_team', None):
+            away_player_id = away_player.get('id', None)
             define_player_points_and_goals_per_match(oposite_team_score=int(request.form['home_team_score']),
-                                                     player_score=int(request.form[str(away_player.get('id', None))]),
+                                                     player_score=int(request.form[f'goals_{away_player_id}']),
+                                                     player_assists=int(request.form[f'assists_{away_player_id}']),
+                                                     player_cards=int(request.form[f'cards_{away_player_id}']),
+                                                     player_minutes=int(request.form[f'minutes_{away_player_id}']),
                                                      player=away_player,
                                                      match_id=match_id)
 
