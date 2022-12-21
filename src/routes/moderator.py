@@ -3,8 +3,9 @@ from flask_login import current_user
 
 from src.core.roles import merged_login_role_required_decorator
 from src.logs import logger
-from src.crud import moderator_operations
+from src.crud import moderator_operations, auth_operations, points_operations
 from src.utility.moderator_points_utility import define_player_points_and_goals_per_match
+from src.utility.match_checks import check_round_finished_status
 from src.path_structure import TEMPLATES_DIRECTORY_PATH
 
 
@@ -71,7 +72,14 @@ def moderator_complete_match_post(match_id: int):
                                                      player_minutes=int(request.form[f'minutes_{away_player_id}']),
                                                      player=away_player,
                                                      match_id=match_id)
-
+        if check_round_finished_status(match_round=match.get('round', None)):
+            users = auth_operations.get_all_users_ids()
+            for user_id in users:
+                user_round_points = points_operations.get_sum_user_round_points(user_id=user_id, 
+                                                                                round_number=match.get('round', None))
+                points_operations.post_user_points_for_given_round(user_id=user_id,
+                                                                   round_number=match.get('round', None),
+                                                                   points_count=user_round_points)
         return make_response({'status': 200})
     except Exception as err:
         logger.logging.error(err)

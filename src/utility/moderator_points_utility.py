@@ -39,5 +39,3 @@ def define_player_points_and_goals_per_match(oposite_team_score: int,
         post_player_goals_per_match(number_of_goals=player_score,
                                     player_id=player.get('id', None),
                                     match_id=match_id)
-
-

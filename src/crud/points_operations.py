@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from src.logs import logger
 from src.database.session import SessionLocal
-from src.models import UserPoints, Points, GoalsScored
+from src.models import UserPoints, Points, GoalsScored, Player, SelectedPlayers
 
 
 session = SessionLocal()
@@ -85,3 +85,11 @@ def post_player_goals_per_match(number_of_goals: int, player_id: int, match_id: 
         session.rollback()
         logger.logging.error(err)
         raise err
+
+
+def get_sum_user_round_points(user_id: int, round_number: int):
+    points = session.query(func.sum(Points.number_of_points))\
+        .join(Player).join(SelectedPlayers).join(UserPoints)\
+        .filter(and_(SelectedPlayers.active == True, UserPoints.round == round_number, UserPoints.user_id == user_id))\
+        .scalar()
+    return points

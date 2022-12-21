@@ -26,6 +26,15 @@ def get_user_by_email(email: str) -> User:
         raise err
 
 
+def get_all_users_ids() -> list:
+    try:
+        users_ids = session.query(User.id).all()
+        return users_ids
+    except SQLAlchemyError as err:
+        logger.logging.error(err)
+        raise err
+
+
 def post_create_new_user(new_user_object: User) -> None:
     try:
         session.add(new_user_object)

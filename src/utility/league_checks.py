@@ -5,6 +5,7 @@ from src.logs import logger
 from src.database.session import SessionLocal
 from src.models.user_league import UserLeague
 
+
 session = SessionLocal()
 
 
