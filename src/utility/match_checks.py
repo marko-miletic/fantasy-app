@@ -31,7 +31,7 @@ def check_round_finished_status(match_round: int) -> bool:
 def all_new_match_checks(match_round: int, home_team_id: int, away_team_id: int):
     try:
         return check_playing_teams_by_round((home_team_id, away_team_id), match_round) and \
-            not check_round_finished_status(match_round)
+               not check_round_finished_status(match_round)
     except Exception as err:
         logger.logging.error(err)
         raise err

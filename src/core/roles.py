@@ -23,12 +23,13 @@ def role_names(role: str) -> int:
     return roles.get(role, 0)
 
 
-def merged_login_role_required_decorator(role_value: int, redirect_endpoint: str = 'auth.login'):
+def merged_login_role_required_decorator(role_value: str, redirect_endpoint: str = 'auth.login'):
     # pass the arguments to the decorator factories and
     # obtain the actual decorators
     role_decorator = role_required(role_value=role_names(role=role_value), redirect_endpoint=redirect_endpoint)
     # create a function decorator that applies the two
     # decorators we just created
+
     def real_decorator(func):
         return role_decorator(login_required(func))
     return real_decorator
