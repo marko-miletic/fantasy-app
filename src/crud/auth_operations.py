@@ -29,7 +29,7 @@ def get_user_by_email(email: str) -> User:
 def get_all_users_ids() -> list:
     try:
         users_ids = session.query(User.id).all()
-        return users_ids
+        return [user[0] for user in users_ids]
     except SQLAlchemyError as err:
         logger.logging.error(err)
         raise err

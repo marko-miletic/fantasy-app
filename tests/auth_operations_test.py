@@ -50,6 +50,13 @@ def test_get_user_by_email():
     assert user is not None
 
 
+def test_get_users_ids():
+    users_ids = auth_operations.get_all_users_ids()
+    print(users_ids)
+
+    assert len(users_ids) != 0
+
+
 def test_post_create_new_user():
     test_user = User(name='test', email='test', password='test')
     test_user.id = -1

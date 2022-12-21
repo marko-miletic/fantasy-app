@@ -88,8 +88,15 @@ def post_player_goals_per_match(number_of_goals: int, player_id: int, match_id: 
 
 
 def get_sum_user_round_points(user_id: int, round_number: int):
-    points = session.query(func.sum(Points.number_of_points))\
-        .join(Player).join(SelectedPlayers).join(UserPoints)\
-        .filter(and_(SelectedPlayers.active == True, UserPoints.round == round_number, UserPoints.user_id == user_id))\
-        .scalar()
-    return points
+    try:
+        points = session.query(func.sum(Points.number_of_points))\
+            .join(Player).join(SelectedPlayers).join(UserPoints)\
+            .filter(and_(SelectedPlayers.active == True,
+                         UserPoints.round == round_number,
+                         UserPoints.user_id == user_id))\
+            .scalar()
+        return points
+    except SQLAlchemyError as err:
+        session.rollback()
+        logger.logging.error(err)
+        raise err
